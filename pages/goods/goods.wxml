@@ -1,0 +1,132 @@
+  <view class="container goods_detail_container" wx:if="{{goods.goods_sku}}">
+    <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+      <swiper-item wx:for="{{goods.swipe_pic_url}}" wx:key="{{index}}">
+        <image src="{{item}}" background-size="cover"></image>
+      </swiper-item>
+    </swiper>
+    <!-- <view class="service-policy">
+      <view class="item">30天无忧退货</view>
+      <view class="item">48小时快速退款</view>
+      <view class="item">满88元免邮费</view>
+    </view> -->
+    <view class="goods-info">
+      <view class="c">
+        <text class="name">{{goods.name}}</text>
+        <text class="brief">{{goods.goods_brief}}</text>
+        <view class="promotion_tag">
+          <span class="tag" wx:for="{{goods.promotion_tag}}" wx:key="{{index}}">{{item}}</span>
+        </view>
+        <view class="price">
+          <span class="rmb_symbol">￥</span>{{activeSku.retail_price}}
+          <span class="market_price" wx:if="{{activeSku.market_price}}">￥{{activeSku.market_price}}</span>
+        </view>
+  
+        <view class="goods_sku">
+          <span class="{{ activeSku.id == item.id ? 'active_sku' : 'sku'}}" wx:for="{{goods.goods_sku}}" wx:key="{{index}}" bindtap="selectSku" data-sku="{{item}}">{{item.name}}</span>
+        </view>
+
+        <view class="sku_remark">{{activeSku.remark}}</view>
+      </view>
+    </view>
+
+    <view class="goods_num">
+      <view class="title">数量：</view>
+       <view class="selnum">
+        <view class="cut {{goodsNum <= 1 ? 'disable_num_btn' : ''}}" catchtap="cutNumber" >-</view>
+        <input value="{{goodsNum}}" class="number" disabled="true" type="number" />
+        <view class="add {{goodsNum >= 500 ? 'disable_num_btn' : ''}}" catchtap="addNumber">+</view>
+      </view>
+    </view>
+
+   <view class="goods-detail">
+      <view class="title">商品详情</view>
+      <view class="goods_info">
+        <view class="goods_info_item">销量：{{goods.sell_volume}}</view>
+        <view class="goods_info_item ">点赞：{{goods.like_volume}}</view>
+      </view>
+      <view class="desc">{{goods.goods_desc}}</view>
+    </view>
+
+    <view class="goods-detail-img">
+        <image mode="widthFix" wx:for="{{goods.desc_pic_url}}" wx:key="{{item.name}}"  src="{{item}}"></image>
+    </view>
+
+
+
+
+
+    <view class="goods-goods">
+      <view class="b">
+        <view class="good_detail_header">
+          <view class="line"></view>
+          <text class="title">大家都在吃</text>
+        </view>
+      <view class="a-section a-popular" wx:if="{{goods.goods.length > 0}}">
+        <view class="b">
+          <view class="item" wx:for="{{goods.goods}}" wx:for-index="index1" wx:for-item="good" wx:key="{{good.id}}">
+            <navigator url="/pages/goods/goods?id={{good.id}}" class="item-nav">
+              <image class="img" src="{{good.list_pic_url}}" background-size="cover"></image>
+                <view class="right">
+                  <view class="text">
+                    <text class="name">{{good.name}}</text>
+                    <text class="desc">{{good.goods_brief}}</text>
+                      <view wx:for="{{good.goods_sku}}" wx:for-index="index2" wx:for-item="sku" wx:key="{{sku.id}}">
+                        <view class="sku">
+                          <view>
+                             <text class="sku_price">￥{{sku.retail_price}}</text>
+                              <text class="sku_name">  /{{sku.name}}</text>
+                              <text class="sku_market_price" wx:if="{{sku.market_price}}">￥{{sku.market_price}}</text>
+                          </view>
+                          
+                          <view class="add_to_cart" data-goodid="{{good.id}}" data-skuid="{{sku.id}}" catchtap='addToCar'>
+                              <span class="add_to_cart_icon">{{sku.add_cart_sym}}</span>
+                          </view>
+                        </view>
+                      <view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </navigator>
+          </view>
+        </view>
+        <view class="bottom-tip">好吃的都在上面啦~</view>
+        </view>
+        </view>
+    </view>
+
+   
+    <view class="common-problem" wx:if="{{issueList.length > 0}}">
+      <view class="h">
+        <view class="line"></view>
+        <text class="title">常见问题</text>
+      </view>
+      <view class="b">
+        <view class="item" wx:for="{{issueList}}" wx:key="{{item.id}}">
+          <view class="question-box">
+            <text class="spot"></text>
+            <text class="question">{{item.question}}</text>
+          </view>
+          <view class="answer">
+            {{item.answer}}
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+    </view>
+
+  <view class="bottom-btn"  wx:if="{{goods.goods_sku}}">
+    
+    <view class="l l-cart">
+      <view class="box">
+        <text class="cart-count">{{cartGoodsCount}}</text>
+        <image bindtap="openCartPage" class="icon" src="/static/images/app_shopcart.png"></image>
+
+      </view>
+    </view>
+    <view class="r {{goods}}"  data-goodid="{{goods.id}}" data-skuid="{{activeSku.id}}" catchtap='addToCar'>加入购物车</view>
+    <view class="c" bindtap='toClearing'>买买买</view>
+    
+  </view>

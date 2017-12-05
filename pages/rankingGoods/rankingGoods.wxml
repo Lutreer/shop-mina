@@ -1,0 +1,64 @@
+<view class="container">
+  <view class="brand-info">
+    <view class="name">
+      <image class="img" src="{{bannerInfo.image_url}}" background-size="cover"></image>
+      <view class="info-box" wx:if="{{bannerInfo.name}}">
+        <view class="info">
+          <text class="txt">{{bannerInfo.name}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="sort">
+    <view class="sort-box">
+      <view class="item {{currentSortType == 'default' ? 'active' : ''}}"  bindtap="openSortFilter" id="defaultSort">
+        <text class="txt">综合</text>
+      </view>
+      <view class="item by-price {{currentSortType == 'price' ? 'active' : ''}} {{currentSortOrder == 'asc'  ? 'asc' : 'desc'}}" bindtap="openSortFilter" id="priceSort">
+        <text class="txt">价格</text>
+      </view>
+      <view class="item {{currentSortType == 'category' ? 'active' : ''}}" bindtap="openSortFilter" id="categoryFilter">
+        <text class="txt">分类</text>
+      </view>
+    </view>
+    <view class="sort-box-category" wx-if="{{categoryFilter}}">
+      <view class="item {{item.checked ? 'active' : ''}}" wx:for="{{filterCategory}}" wx:key="cate-{{item.id}}" data-category-index="{{index}}" bindtap="selectCategory">{{item.name}}</view>
+    </view>
+  </view> -->
+  <view class="a-section a-popular" wx:if="{{goodsList.length > 0}}">
+        <view class="b">
+            <view class="item" wx:for="{{goodsList}}" wx:for-index="index1" wx:for-item="good" wx:key="{{good.id}}">
+                <navigator url="/pages/goods/goods?id={{good.id}}" class="item-nav">
+                    <image class="img" src="{{good.list_pic_url}}" background-size="cover"></image>
+                    <view class="right">
+                        <view class="text">
+                            <text class="name">{{good.name}}</text>
+                            <text class="desc">{{good.goods_brief}}</text>
+                            <view wx:for="{{good.goods_sku}}" wx:for-index="index2" wx:for-item="sku" wx:key="{{sku.id}}">
+                              <view class="sku">
+                                <view>
+                                   <text class="sku_price">￥{{sku.retail_price}}</text>
+                                  <text class="sku_name">  /{{sku.name}}</text>
+                                  <text class="sku_market_price" wx:if="{{sku.market_price}}">￥{{sku.market_price}}</text>
+                                </view>
+                                
+                                <view class="add_to_cart" data-goodid="{{good.id}}" data-skuid="{{sku.id}}" catchtap='addToCar'>
+                                    <span class="add_to_cart_icon">{{sku.add_cart_sym}}</span>
+                                </view>
+                              </view>
+                              
+                            <view>
+                               
+                              </view>
+                            </view>
+                        </view>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+    <navigator class="corner-cart-view" url="/pages/cart/cart" open-type="switchTab">
+      <image class="cart-img" src="../../static/images/app_corner_shopcart.png"></image>
+      <text class="cart-count ellipsis">{{cartCount || '...'}}</text>
+  </navigator>
+</view>

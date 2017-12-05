@@ -1,0 +1,53 @@
+<view class="container">
+    <view class="brand-info">
+        <view class="name">
+            <image class="img" src="{{brand.inner_pic_url}}" background-size="cover"></image>
+            <view class="info-box">
+                <view class="info">
+                    <text class="txt">{{brand.title_first}}</text>
+                    <text class="line"></text>
+                </view>
+            </view>
+        </view>
+        <view class="desc">
+            {{brand.description}}
+        </view>
+    </view>
+
+    <view class="a-section a-popular" wx:if="{{brand.goods.length > 0}}">
+        <view class="b">
+            <view class="item" wx:for="{{brand.goods}}" wx:for-index="index1" wx:for-item="good" wx:key="{{good.id}}">
+                <navigator url="/pages/goods/goods?id={{good.id}}" class="item-nav">
+                    <image class="img" src="{{good.list_pic_url}}" background-size="cover"></image>
+                    <view class="right">
+                        <view class="text">
+                            <text class="name">{{good.name}}</text>
+                            <text class="desc">{{good.goods_brief}}</text>
+                            <view wx:for="{{good.goods_sku}}" wx:for-index="index2" wx:for-item="sku" wx:key="{{sku.id}}">
+                              <view class="sku">
+                                <view>
+                                   <text class="sku_price">￥{{sku.retail_price}}</text>
+                                    <text class="sku_name">  /{{sku.name}}</text>
+                                    <text class="sku_market_price" wx:if="{{sku.market_price}}">￥{{sku.market_price}}</text>
+                                </view>
+                                
+                                <view class="add_to_cart" data-goodid="{{good.id}}" data-skuid="{{sku.id}}" catchtap='addToCar'>
+                                    <span class="add_to_cart_icon">{{sku.add_cart_sym}}</span>
+                                </view>
+                              </view>
+                              
+                            <view>
+                               
+                              </view>
+                            </view>
+                        </view>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+    <navigator class="corner-cart-view" url="/pages/cart/cart" open-type="switchTab">
+      <image class="cart-img" src="../../static/images/app_corner_shopcart.png"></image>
+      <text class="cart-count ellipsis">{{cartCount || '...'}}</text>
+  </navigator>
+</view>

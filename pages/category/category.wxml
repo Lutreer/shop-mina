@@ -1,0 +1,73 @@
+<view class="container">
+  <view class="search">
+    <navigator url="/pages/search/search" class="input">
+      <image class="icon" src="../../static/images/search.png"></image>
+      <text class="txt">{{searchPlaceholder}}</text>
+    </navigator>
+  </view>
+  <view class="category">
+    <scroll-view class="nav" scroll-y="true">
+        <view class="item {{ currentCategory.id == item.id ? 'active' : ''}}" wx:for="{{navList}}" data-item="{{item}}"  data-id="{{item.id}}" data-index="{{index}}" wx:key="{{index}}" bindtap="switchCate">{{item.name}}</view>
+    </scroll-view>
+    <scroll-view class="cate" scroll-y="true" scroll-top="{{scrollTop}}" scroll-with-animation="true" enable-back-to-top="true" bindscrolltolower="scrolltolower">
+        <view class="banner">
+            <navigator>
+                <image class="image" wx:show="currentCategory.banner_img_url" src="{{currentCategory.banner_pic_url}}"></image>
+                <view wx:if="{{currentCatagory.description}}">{{currentCatagory.description}}</view>
+            </navigator>
+        </view>
+
+        <view class="hd">
+            <text class="line"></text>
+            <text class="txt">{{currentCategory.name}}</text>
+            <text class="line"></text>
+        </view>
+
+<view class="category_goods_list" wx:if="{{currentGoods.length > 0}}">
+        <view class="b">
+            <view class="item" wx:for="{{currentGoods}}" wx:for-index="index1" wx:for-item="good" wx:key="{{good.id}}">
+                <navigator url="/pages/goods/goods?id={{good.id}}" class="item-nav">
+                    <image class="img" src="{{good.list_pic_url}}" background-size="cover"></image>
+                    <view class="right">
+                        <view class="text">
+                            <text class="name">{{good.name}}</text>
+                            <text class="desc ellipsis">{{good.goods_brief}}</text>
+                            <view wx:for="{{good.goods_sku}}" wx:for-index="index2" wx:for-item="sku" wx:key="{{sku.id}}">
+                              <view class="sku">
+                                <view class="sku_info">
+                                   <text class="sku_price">￥{{sku.retail_price}}</text>
+                                  <text class="sku_name ellipsis">  /{{sku.name}}</text>
+                                  <text class="sku_market_price" wx:if="{{sku.market_price}}">￥{{sku.market_price}}</text>
+                                </view>
+                                
+                                <view class="add_to_cart" data-goodid="{{good.id}}" data-skuid="{{sku.id}}" catchtap='addToCar'>
+                                    <span class="add_to_cart_icon">{{sku.add_cart_sym}}</span>
+                                </view>
+                              </view>
+                              
+                            <view>
+                               
+                              </view>
+                            </view>
+                        </view>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+
+            <!-- <view class="cate-item">
+                <navigator class="item"   url="/pages/goods/goods?id={{iitem.id}}" wx:for="{{currentGoods}}" wx:for-item="iitem" wx:for-index="iindex" wx:key="{{iindex}}">
+                    <image class="img" src="{{iitem.list_pic_url}}" background-size="cover"></image>
+                    <text class="name">{{iitem.name}}</text>
+                    <text class="price">￥{{iitem.retail_price}}</text>
+                </navigator>
+                <view class="bottom-tip">好吃的都在上面啦~</view>
+            </view> -->
+    </scroll-view>
+  </view>
+  <navigator class="float-cart-view" url="/pages/cart/cart" open-type="switchTab" wx:if="{{cartCount > 0}}">
+      <image class="float-cart" src="../../static/images/cart_no.png"></image>
+      <text class="float-cart-no">{{cartCount}}</text>
+  </navigator>
+</view>

@@ -1,0 +1,104 @@
+<view class="container">
+  <view class="service-policy">
+    <view class="item">30天无忧退货</view>
+    <view class="item">48小时快速退款</view>
+    <view class="item">{{dddd}}</view>
+  </view>
+  <view class="no-cart" wx:if="{{cartGoods.length <= 0}}">
+    <view class="c">
+      <image src="../../static/images/no_cart_goods.png" />
+      <text>去添加点什么吧</text>
+    </view>
+  </view>
+  <view class="cart-view" wx:if="{{cartGoods.length > 0}}">
+    <view class="list">
+      <view class="group-item">
+        <view class="goods">
+          <view class="item {{isEditCart ? 'edit' : ''}} {{(item.goods.status == 1 && item.goods.is_on_sale == 1 && item.goods.sku) ? '' : 'good_out_of_stock'}}" wx:for="{{cartGoods}}" wx:key="{{item.id}}">
+          <!-- 编辑和下单不一样的checkbox -->
+            <view wx:if="{{isEditCart}}" class="checkbox {{item.editSelected ? 'checked' : ''}}" bindtap="checkedEditItem" data-item-index="{{index}}"></view>
+            <view wx:if="{{!isEditCart}}" class="checkbox {{item.selected ? 'checked' : ''}}" bindtap="checkedItem" data-item-index="{{index}}"></view>
+            <view class="cart-goods" data-goods="{{item}}"  bindtap="toGoodsDetail">
+              <image class="img" src="{{item.goods.list_pic_url}}"></image>
+              <view class="info">
+                <view class="t">
+                  <text class="name">{{item.goods.name}}</text>
+                  <text class="num">x{{item.number}}</text>
+                </view>
+                <text class="brief ellipsis" wx:if="{{!isEditCart}}">{{item.goods.goods_brief}}</text>
+                <!-- 编辑时 -->
+                <view  class="edit_title" wx:if="{{isEditCart}}">
+                  <view class="">{{item.goods.name}}</view>
+                  <picker catchtap='stopPop' bindchange="bindPickerChange" data-goods-index="{{index}}"  value="{{item.goods.skuIndex}}" range="{{item.goods.sku_picker}}"
+                  wx:if="{{item.goods.status == 1 && item.goods.is_on_sale ==1 && item.goods.sku}}">
+                    <view class="picker attr">
+                      已选择：{{(item.goods.status == 1 && item.goods.is_on_sale ==1 && item.goods.sku) ? item.goods.sku.name : '已下架'}}
+                    </view>
+                  </picker>
+                  <!-- <view class="attr" wx:if="{{isEditCart}}">已选择:{{item.goods.sku.name? item.goods.sku.name : '已下架'}}</view> -->
+                </view>
+                
+                  <view class="b">
+                    <text class="price" wx:if="{{item.goods.status == 1 && item.goods.is_on_sale ==1 && item.goods.sku}}">{{'￥' + item.goods.sku.retail_price}}</text>
+                    <text class="price_out_of_stock" wx:if="{{isEditCart && !(item.goods.status == 1 && item.goods.is_on_sale ==1 && item.goods.sku)}}">已下架</text>
+                    <text class="mark_price"  wx:if="{{!isEditCart && item.goods.sku.market_price}}">{{(item.goods.status == 1 && item.goods.is_on_sale ==1 && item.goods.sku) ? ('￥' +item.goods.sku.market_price) : ''}}</text>
+                    <text class="sku_name" wx:if="{{!isEditCart}}">{{(item.goods.status == 1 && item.goods.is_on_sale ==1 && item.goods.sku) ? (item.goods.sku_label + ':' + item.goods.sku.name) : '已下架'}}</text>
+                    
+                    <view class="selnum" wx:if="{{item.goods.status == 1 && item.goods.is_on_sale ==1 && item.goods.sku}}">
+                      <view class="cut {{item.number <= 1 ? 'disable_num_btn' : ''}}" catchtap="cutNumber"  data-item-index="{{index}}">-</view>
+                      <input value="{{item.number}}" class="number" disabled="true" type="number" />
+                    <view class="add {{item.number  > 1000 ? 'disable_num_btn' : ''}}" catchtap="addNumber" data-item-index="{{index}}">+</view>
+                  </view>
+                </view>
+
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!--<view class="group-item">
+                <view class="header">
+                    <view class="promotion">
+                        <text class="tag">满赠</text>
+                        <text class="txt">再加26元, 3件赠1件蔓越莓干</text>
+                        <image class="icon" src="http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/go-b67cb9718d.png"></image>
+                    </view>
+                    <view class="get">领赠品</view>                
+                </view>
+                <view class="goods">
+                    <view class="item">
+                        <view class="checkbox" ></view>
+                        <view class="cart-goods">
+                            <image class="img" src="http://yanxuan.nosdn.127.net/04e05e9de3a471b1f6479dd137b459a8.png"></image>
+                            <view class="info">
+                                <view class="t">
+                                    <text class="name">秋冬保暖加厚细羊毛被</text>
+                                    <text class="num">x1</text>
+                                </view>
+                                <view class="attr">220*240cm</view>
+                                <view class="b">
+                                    <text class="price">￥199.99</text>
+                                    <view class="open">优惠活动</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>-->
+    </view>
+    <!-- <view class="out_of_stock_tip" wx:if="!isEditCart && hasOutOfStockGoods">购物车中有已下架的商品，结算时会忽略此类商品</view> -->
+    <view class="cart-bottom">
+    <!-- 编辑和下单不一样的checkbox -->
+    <view wx:if="{{isEditCart}}" class="checkbox {{editSelectedCount ==  cartGoods.length? 'checked' : ''}}" bindtap="editCheckedAll">全选({{editSelectedCount}})</view>
+      <view wx:if="{{!isEditCart}}"  class="checkbox {{selectedCount ==  cartGoods.length? 'checked' : ''}}" bindtap="checkedAll">全选({{selectedCount}})</view>
+      <view class="total">
+      <view>{{!isEditCart ? '总计：￥'+checkedGoodsPrice : ''}}</view>
+      <view class="save_price" wx:if="{{savePrice*1 != 0}}">{{!isEditCart ? '已节省：￥'+savePrice : ''}}</view>
+      </view>
+      <view class="delete" bindtap="editCart">{{!isEditCart ? '编辑' : '完成'}}</view>
+      <view class="checkout" bindtap="deleteCart" wx:if="{{isEditCart}}">删除所选</view>
+      <view class="checkout" bindtap="checkoutOrder" wx:if="{{!isEditCart}}">结算</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+<view class="container">
+    <view class="brand-list" >
+        <navigator url="../brandDetail/brandDetail?id={{item.id}}"  class="item" wx:for="{{brandList}}" wx:key="id">
+            <view class="img-bg">
+                <image src="{{item.inner_pic_url}}" background-size="cover"></image>
+            </view>
+            <view class="txt-box">
+                <text class="txt">{{item.title}}  >></text>
+            </view>
+        </navigator >
+    </view>
+</view>

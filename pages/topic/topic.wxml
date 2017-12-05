@@ -1,0 +1,22 @@
+<view class="container">
+    <scroll-view class="topic-list" scroll-y="true" scroll-top="{{scrollTop}}">
+        <navigator class="item" wx:for="{{topicList}}" wx:key="{{item.id}}" url="../topicDetail/topicDetail?id={{item.id}}">
+            <view class='img_view'>
+              <image class="img" src="{{item.list_pic_url}}"></image>
+            </view>
+
+            <view class="info">
+                <text class="title ellipsis">{{item.title}}</text>
+                <text class="desc ellipsis">{{item.subtitle}}</text>
+                <view class="read_count_box">
+                  <span class="read_count">{{item.read_count}}人看过</span>
+                </view>
+                
+            </view>
+        </navigator>
+        <view class="page" wx:if="{{totalPages > 1}}">
+            <view class="prev {{ page <= 1 ? 'disabled' : ''}}" bindtap="prevPage">上一页</view>
+            <view class="next {{ totalPages <= page ? 'disabled' : ''}}" bindtap="nextPage">下一页</view>
+        </view>
+    </scroll-view>
+</view>

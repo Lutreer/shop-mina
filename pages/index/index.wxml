@@ -1,0 +1,184 @@
+<!--index.wxml-->
+<view class="container">
+    <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+        <swiper-item wx:for="{{banner}}" wx:key="{{item.id}}">
+            <navigator url="{{item.link}}">
+                <image src="{{item.image_url}}" background-size="cover"></image>
+            </navigator>
+        </swiper-item>
+    </swiper>
+    <view class="m-menu">
+        <view class="item" data-item="{{item}}" wx:for="{{channel}}" wx:key="{{item.id}}" bindtap='navigate'>
+            <image src="{{item.icon_url}}" background-size="cover"></image>
+            <text>{{item.name}}</text>
+        </view>
+    </view>
+    <view class="a-section a-brand">
+        <view class="h">
+            <navigator url="../brand/brand">
+                <text class="txt">{{brand.title}}</text>
+            </navigator>
+        </view>
+        <view class="b">
+            <view class="item item-1" wx:for="{{brand.list}}" wx:key="item.id">
+                <navigator url="/pages/brandDetail/brandDetail?id={{item.id}}">
+                    <view class="wrap">
+                        <image class="img" src="{{item.outter_pic_url}}" mode="aspectFill"></image>
+                        <view class="mt">
+                            <text class="brand" wx:if="{{item.title_first}}">{{item.title_first}}</text>
+                            <text class="price" wx:if="{{item.title_second}}">{{item.title_second}}</text>
+                        </view>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+
+    <view class="a-section a-popular" wx:if="{{hotGoods.length > 0}}">
+        <view class="h">
+            <view>
+                <navigator url="../rankingGoods/rankingGoods?type=2">
+                    <text class="txt">人气top10</text>
+                </navigator>
+            </view>
+        </view>
+        <view class="b">
+        <!-- <view class="item" >
+                <navigator url="/pages/goods/goods?id={{good.id}}" class="item-nav">
+                    <image class="img" src="/sf/sf" background-size="cover"></image>
+                    <view class="right">
+                        <view class="text">
+                            <text class="name">酥甜水嫩 全家满意</text>
+                            <text class="desc">美国华盛顿甜脆红地理蛇果</text>
+                            <view>
+                              <view class="sku">
+                                <view>
+                                  <text class="sku_price">￥23.34</text>
+                                  <text class="sku_name">  /2个约500g</text>
+                                  <text class="sku_market_price" >￥23.34</text>
+                                </view>
+                                
+                                <view class="add_to_cart" >
+                                    <span class="add_to_cart_icon">+</span>
+                                </view>
+                              </view>
+                              <view class="sku">
+                                <view>
+                                  <text class="sku_price">￥23.34</text>
+                                  <text class="sku_name">  /2个约500g</text>
+                                  <text class="sku_market_price" >￥23.34</text>
+                                </view>
+                                
+                                <view class="add_to_cart" >
+                                    <span class="add_to_cart_icon">+</span>
+                                </view>
+                              </view>
+                              
+                              
+                            <view>
+                            
+                            
+                               
+                              </view>
+                            </view>
+                        </view>
+                    </view>
+                </navigator>
+            </view> -->
+             <view class="item" wx:for="{{hotGoods}}" wx:for-index="index1" wx:for-item="good" wx:key="{{good.id}}">
+                <navigator url="/pages/goods/goods?id={{good.id}}" class="item-nav">
+                    <image class="img" src="{{good.list_pic_url}}" background-size="cover"></image>
+                    <view class="right">
+                        <view class="text">
+                            <text class="name">{{good.name}}</text>
+                            <text class="desc">{{good.goods_brief}}</text>
+                            <view wx:for="{{good.goods_sku}}" wx:for-index="index2" wx:for-item="sku" wx:key="{{sku.id}}">
+                              <view class="sku">
+                                <view>
+                                  <text class="sku_price">￥{{sku.retail_price}}</text>
+                                  <text class="sku_name">  /{{sku.name}}</text>
+                                  <text class="sku_market_price" wx:if="{{sku.market_price}}">￥{{sku.market_price}}</text>
+                                </view>
+                                
+                                <view class="add_to_cart" data-goodid="{{good.id}}" data-skuid="{{sku.id}}" catchtap='addToCar'>
+                                    <span class="add_to_cart_icon">{{sku.add_cart_sym}}</span>
+                                </view>
+                              </view>
+                              
+                            <view>
+                               
+                              </view>
+                            </view>
+                        </view>
+                    </view>
+                </navigator>
+            </view> 
+        </view>
+    </view>
+    <view class="a-section a-topic" wx:if="{{topics.length > 0}}">
+        <view class="h">
+            <view>
+                <navigator url="../topic/topic">
+                    <text class="txt">专买买买题精选</text>
+                </navigator>
+            </view>
+        </view>
+        <view class="b">
+            <scroll-view scroll-x="true" class="list">
+                <view class="item" wx:for="{{topics}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.id}}">
+                    <navigator url="../topicDetail/topicDetail?id={{item.id}}">
+                        <image class="img" src="{{item.list_pic_url}}" background-size="cover"></image>
+                        <view class="np">
+                            <text class="name">{{item.title}}</text>
+                        </view>
+                        <text class="desc">{{item.subtitle}}</text>
+                    </navigator>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+    <view class="a-section a-popular" wx:if="{{newGoods.length > 0}}">
+        <view class="h">
+            <view>
+                <navigator url="../rankingGoods/rankingGoods?type=1">
+                    <text class="txt">新品发布</text>
+                </navigator>
+            </view>
+        </view>
+        <view class="b">
+            <view class="item" wx:for="{{newGoods}}" wx:for-index="index1" wx:for-item="good" wx:key="{{good.id}}">
+                <navigator url="/pages/goods/goods?id={{good.id}}" class="item-nav">
+                    <image class="img" src="{{good.list_pic_url}}" background-size="cover"></image>
+                    <view class="right">
+                        <view class="text">
+                            <text class="name">{{good.name}}</text>
+                            <text class="desc">{{good.goods_brief}}</text>
+                            <view wx:for="{{good.goods_sku}}" wx:for-index="index2" wx:for-item="sku" wx:key="{{sku.id}}">
+                              <view class="sku">
+                                <view>
+                                   <text class="sku_price">￥{{sku.retail_price}}</text>
+                                  <text class="sku_name">  /{{sku.name}}</text>
+                                  <text class="sku_market_price" wx:if="{{sku.market_price}}">￥{{sku.market_price}}</text>
+                                </view>
+                                
+                                <view class="add_to_cart" data-goodid="{{good.id}}" data-skuid="{{sku.id}}" catchtap='addToCar'>
+                                    <span class="add_to_cart_icon">{{sku.add_cart_sym}}</span>
+                                </view>
+                              </view>
+                              
+                            <view>
+                               
+                              </view>
+                            </view>
+                        </view>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+    <view class="bottom-tip">好吃的都在上面啦~</view>
+    <navigator class="float-cart-view {{addAnimation ? 'add_animation' : ''}}" url="/pages/cart/cart" open-type="switchTab" wx:if="{{cartCount > 0}}">
+        <image class="float-cart" src="../../static/images/cart_no.png"></image>
+        <text class="float-cart-no">{{cartCount}}</text>
+    </navigator>
+</view>

@@ -1,0 +1,79 @@
+<scroll-view class="container">
+  <scroll-view class="content">
+    <!-- <import src="../../lib/wxParse/wxParse.wxml"/> 
+    <template is="wxParse" data="{{wxParseData:topicDetail.nodes}}"/> -->
+        <image mode="widthFix" wx:for="{{topic.desc_pic_url}}" wx:key="{{item.name}}"  src="{{item}}"></image>
+  </scroll-view>
+  <!-- <scroll-view class="comments">
+    <view class="h">
+      <text class="t">精选留言</text>
+      <image bindtap="postComment" class="i" src="style/img/icon-normal/comment-add-2aca147c3f.png"></image>
+    </view>
+     <view class="has-comments" wx:if="{{commentList.length > 0 }}">
+      <view class="b">
+        <view class="item" wx:for="{{commentList}}" wx:key="{{item.id}}">
+          <view class="info">
+            <view class="user">
+              <image class="avatar" src="{{item.user_info.avatar}}"></image>
+              <text class="nickname">{{item.user_info.nickname}}</text>
+            </view>
+            <view class="time">{{item.add_time}}</view>
+          </view>
+          <view class="comment">
+            {{item.content}}
+          </view>
+        </view>
+      </view>
+      <view class="load" wx:if="{{commentCount > 5}}">
+        <navigator url="/pages/topicComment/topicComment?valueId={{topic.id}}&typeId=1">查看更多</navigator>
+      </view>
+    </view> 
+    <view class="no-comments" wx:if="{{commentList.length <= 0}}">
+        <view class="b">    
+            <image class="icon" src="style/img/icon-normal/no-comment-560f87660a.png"></image>
+            <text class="txt">等你来留言</text>
+        </view>
+    </view>
+  </scroll-view> -->
+  <scroll-view class="rec-box">
+    <view class="h">
+      <text class="txt">专题推荐</text>
+    </view>
+    <view class="b">
+      <view class="a-section a-popular" wx:if="{{topic.goods.length > 0}}">
+        <view class="b">
+          <view class="item" wx:for="{{topic.goods}}" wx:for-index="index1" wx:for-item="good" wx:key="{{good.id}}">
+            <navigator url="/pages/goods/goods?id={{good.id}}" class="item-nav">
+              <image class="img" src="{{good.list_pic_url}}" background-size="cover"></image>
+                <view class="right">
+                  <view class="text">
+                    <text class="name">{{good.name}}</text>
+                    <text class="desc">{{good.goods_brief}}</text>
+                      <view wx:for="{{good.goods_sku}}" wx:for-index="index2" wx:for-item="sku" wx:key="{{sku.id}}">
+                        <view class="sku">
+                          <view>
+                            <text class="sku_price">￥{{sku.retail_price}}</text>
+                            <text class="sku_name">  /{{sku.name}}</text>
+                            <text class="sku_market_price" wx:if="{{sku.market_price}}">￥{{sku.market_price}}</text>
+                          </view>
+                          
+                          <view class="add_to_cart" data-goodid="{{good.id}}" data-skuid="{{sku.id}}" catchtap='addToCar'>
+                              <span class="add_to_cart_icon">{{sku.add_cart_sym}}</span>
+                          </view>
+                        </view>
+                      <view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </navigator>
+          </view>
+        </view>
+    </view>
+    <view class="bottom-tip"  wx:if="{{topic.goods.length > 0}}">好吃的都在上面啦~</view>
+    </view>
+    <view wx:if="{{topic.goods.length == 0}}" class="topic_no_goods">
+      <navigator class="" url="/pages/category/category" open-type="switchTab">自己动手，丰衣足食</navigator>
+    </view>
+  </scroll-view>
+</scroll-view>

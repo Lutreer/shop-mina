@@ -1,0 +1,231 @@
+/**app.wxss**/
+.container {
+  box-sizing: border-box;
+  background-color: #f4f4f4;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+} 
+
+view,image,text,navigator{
+  box-sizing: border-box;
+  padding:0;
+  margin:0;
+
+}
+
+view,text{
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 28rpx;
+  color: #333;
+}
+
+
+/* 人气Top10 */
+.a-section {
+  width: 750rpx;
+  height: auto;
+  overflow: hidden;
+  background: #fff;
+  color: #333;
+  margin-top: 20rpx;
+}
+.a-popular {
+  width: 750rpx;
+  height: auto;
+  overflow: hidden;
+}
+
+.a-popular .b .item {
+  border-top: 1rpx solid #f0f0f0;
+  margin: 0 20rpx;
+  height: auto;
+  width: 710rpx;
+  padding-top: 10rpx;
+}
+.a-popular .b .item .item-nav{
+
+  display: flex;
+  height: auto;
+  width: 710rpx;
+  align-items:center;
+}
+.a-popular .b .img {
+  margin-right: 15rpx;
+  width: 215rpx;
+  height: 215rpx;
+}
+
+.a-popular .b .right {
+  width: 480rpx;
+  min-height: 215rpx;
+  display: flex;
+}
+
+.a-popular .b .text {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  width: 480rpx;
+}
+.a-popular .b .text .sku{
+  display: flex;
+  justify-content:space-between;
+  color:#619433;
+  line-height: 65rpx;
+}
+.sku_price{
+  font-size: 34rpx;
+  color:#619433;
+}
+.sku_name{
+  font-size: 24rpx;
+  color:#619433;
+}
+.sku_market_price{
+  margin-left: 10rpx;
+  font-size: 24rpx;
+  color:#808080;
+  text-decoration: line-through;
+  line-height:60rpx;
+}
+
+.a-popular .b .name {
+  width: 480rpx;
+  display: block;
+  color: #333;
+  line-height: 45rpx;
+  font-size: 32rpx;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+
+.a-popular .b .desc {
+  width: 480rpx;
+  display: block;
+  color: #999;
+  line-height: 35rpx;
+  font-size: 24rpx;
+}
+
+.a-popular .b .price {
+  width: 480rpx;
+  display: block;
+  color: #619433;
+  line-height: 50rpx;
+  font-size: 33rpx;
+}
+/*添加到购物车按钮*/
+.add_to_cart{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  width:65rpx;
+}
+.add_to_cart .add_to_cart_icon{
+  width:45rpx;
+  height:45rpx;
+  border:1rpx solid #e4e4e4;
+  border-radius:25px;
+  /* font-size:35rpx; */
+  color:#619433;
+  /* font-weight:bold; */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-right:5rpx;
+}
+
+
+
+/*tab购物车上面的数量提示*/
+.float-cart-view{
+  display: flex;
+  justify-content:center;
+  position: fixed;
+  bottom: -15rpx;
+  right:247rpx;
+  width: 60rpx;
+  height:60rpx;
+  z-index: 999;
+  overflow: hidden;
+}
+.float-cart{
+  height:45rpx;
+  width: 50rpx;
+}
+.float-cart-no{
+  width: 28rpx;
+  height:40rpx;
+  text-align: center;
+  padding: 5rpx;
+  position:absolute;
+  font-size: 20rpx;
+  color:#fff;
+  overflow: hidden;
+}
+.bottom-tip{
+  text-align: center;
+  color:#999;
+  padding-top: 20rpx;
+  padding-bottom: 40rpx;
+  background-color: #f4f4f4;
+  font-size: 24rpx;
+}
+.add_animation{
+    animation: myfirst 0.35s 2;
+}
+@keyframes myfirst {  
+  0% {  
+      transform: translate(0px, 0px);  
+  }  
+  50% {  
+      transform: translate(0px, -30rpx);  
+  }  
+  100% {  
+      transform: translate(0px, 0rpx);  
+  }  
+}  
+
+/* 左下角购物车 */
+.corner-cart-view{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position: fixed;
+  bottom: 40rpx;
+  left: 40rpx;
+  width:100rpx;
+  height:100rpx;
+  background: #619433;
+  border-radius: 50rpx;
+}
+.corner-cart-view .cart-img{
+  width:60rpx;
+  height:60rpx;
+}
+.corner-cart-view .cart-count{
+  position:absolute;
+top:-10rpx;
+right:-10rpx;
+width:50rpx;
+background-color:#f48f18;
+border:1rpx solid #fff;
+border-radius:18rpx;
+height:35rpx;
+font-size:20rpx;
+text-align:center;
+line-height:30rpx;
+color:#fff;
+overflow:hidden;
+padding:0 5rpx;
+
+}
+
+.ellipsis{
+   word-break:keep-all;
+  white-space:nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
