@@ -1,4 +1,5 @@
 var util = require('../../../utils/util.js');
+var verify = require('../../../utils/verify.js');
 var api = require('../../../config/api.js');
 var comConst = require('../../../config/common.js');
 
@@ -6,20 +7,22 @@ var app = getApp();
 Page({
   data: {
     from:'',
+    collegeList:[],
     collegeIndex:0,
     collegePicker:[],
     address: {
-      id:0,
-      province_id: 0,
-      city_id: 0,
-      district_id: 0,
+      id:-1,
+      // province_id: 0,
+      // city_id: 0,
+      // district_id: 0,
       address: '',
-      full_region: '',
+      // full_region: '',
       name: '',
       mobile: '',
+      college_id:0,
       is_default: 0
     },
-    addressId: 0,
+    addressId: -1,
     openSelectRegion: false,
     selectRegionList: [
       { id: 0, name: '省份', parent_id: 1, type: 1 },
@@ -59,78 +62,96 @@ Page({
     });
   },
   getAddressDetail() {
-    let that = this;
-    util.request(api.AddressDetail, { id: that.data.addressId }).then(function (res) {
+    util.request(api.AddressDetail, { id: this.data.addressId }).then(res => {
       if (res.errno === 0) {
-        that.setData({
+        this.setData({
           address: res.data
         });
+        // 设置collegeIndex的值
+        let collegeId = res.data.college.id
+        for (let i = 0, l = this.data.collegeList.length; i < l; i++) {
+          if (this.data.collegeList[i].id == collegeId) {
+            this.setData({
+              collegeIndex: i
+            })
+            break
+          }
+        }
       }
     });
   },
-  setRegionDoneStatus() {
-    let that = this;
-    let doneStatus = that.data.selectRegionList.every(item => {
-      return item.id != 0;
-    });
+  // setRegionDoneStatus() {
+  //   let that = this;
+  //   let doneStatus = that.data.selectRegionList.every(item => {
+  //     return item.id != 0;
+  //   });
 
-    that.setData({
-      selectRegionDone: doneStatus
-    })
+  //   that.setData({
+  //     selectRegionDone: doneStatus
+  //   })
 
-  },
-  chooseRegion() {
-    let that = this;
-    this.setData({
-      openSelectRegion: !this.data.openSelectRegion
-    });
+  // },
+  // chooseRegion() {
+  //   let that = this;
+  //   this.setData({
+  //     openSelectRegion: !this.data.openSelectRegion
+  //   });
 
-    //设置区域选择数据
-    let address = this.data.address;
-    if (address.province_id > 0 && address.city_id > 0 && address.district_id > 0) {
-      let selectRegionList = this.data.selectRegionList;
-      selectRegionList[0].id = address.province_id;
-      selectRegionList[0].name = address.province_name;
-      selectRegionList[0].parent_id = 1;
+  //   //设置区域选择数据
+  //   let address = this.data.address;
+  //   if (address.province_id > 0 && address.city_id > 0 && address.district_id > 0) {
+  //     let selectRegionList = this.data.selectRegionList;
+  //     selectRegionList[0].id = address.province_id;
+  //     selectRegionList[0].name = address.province_name;
+  //     selectRegionList[0].parent_id = 1;
 
-      selectRegionList[1].id = address.city_id;
-      selectRegionList[1].name = address.city_name;
-      selectRegionList[1].parent_id = address.province_id;
+  //     selectRegionList[1].id = address.city_id;
+  //     selectRegionList[1].name = address.city_name;
+  //     selectRegionList[1].parent_id = address.province_id;
 
-      selectRegionList[2].id = address.district_id;
-      selectRegionList[2].name = address.district_name;
-      selectRegionList[2].parent_id = address.city_id;
+  //     selectRegionList[2].id = address.district_id;
+  //     selectRegionList[2].name = address.district_name;
+  //     selectRegionList[2].parent_id = address.city_id;
 
-      this.setData({
-        selectRegionList: selectRegionList,
-        regionType: 3
-      });
+  //     this.setData({
+  //       selectRegionList: selectRegionList,
+  //       regionType: 3
+  //     });
 
-      this.getRegionList(address.city_id);
-    } else {
-      this.setData({
-        selectRegionList: [
-          { id: 0, name: '省份', parent_id: 1, type: 1 },
-          { id: 0, name: '城市', parent_id: 1, type: 2 },
-          { id: 0, name: '区县', parent_id: 1, type: 3 }
-        ],
-        regionType: 1
-      })
-      this.getRegionList(1);
-    }
+  //     this.getRegionList(address.city_id);
+  //   } else {
+  //     this.setData({
+  //       selectRegionList: [
+  //         { id: 0, name: '省份', parent_id: 1, type: 1 },
+  //         { id: 0, name: '城市', parent_id: 1, type: 2 },
+  //         { id: 0, name: '区县', parent_id: 1, type: 3 }
+  //       ],
+  //       regionType: 1
+  //     })
+  //     this.getRegionList(1);
+  //   }
 
-    this.setRegionDoneStatus();
+  //   this.setRegionDoneStatus();
 
-  },
+  // },
   getCollegeList: function() {
-    util.request(api.AddressDetail, { id: that.data.addressId }).then(function (res) {
+    util.request(api.AddressCollege).then(res => {
       if (res.errno === 0) {
-        that.setData({
-          address: res.data
+        let collegePicker = res.data.map(function (el) {
+          return el.name
+        })
+        this.setData({
+          collegeList: res.data,
+          collegePicker: collegePicker
         });
+
+        //  修改地址时
+        if(this.data.addressId > 0 ){
+          this.getAddressDetail();
+        }
       }
     });
-    collegePicker
+    
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -139,10 +160,9 @@ Page({
         addressId: options.id,
         from: options.from
       });
-      this.getAddressDetail();
     }
     
-    this.getCollegeList()/////////////////
+    this.getCollegeList()//获取学校列表
 
     // 不显示省市区
     // this.getRegionList(1);
@@ -151,135 +171,138 @@ Page({
   onReady: function () {
 
   },
-  selectRegionType(event) {
-    let that = this;
-    let regionTypeIndex = event.target.dataset.regionTypeIndex;
-    let selectRegionList = that.data.selectRegionList;
+  // selectRegionType(event) {
+  //   let that = this;
+  //   let regionTypeIndex = event.target.dataset.regionTypeIndex;
+  //   let selectRegionList = that.data.selectRegionList;
 
-    //判断是否可点击
-    if (regionTypeIndex + 1 == this.data.regionType || (regionTypeIndex - 1 >= 0 && selectRegionList[regionTypeIndex-1].id <= 0)) {
-      return false;
-    }
+  //   //判断是否可点击
+  //   if (regionTypeIndex + 1 == this.data.regionType || (regionTypeIndex - 1 >= 0 && selectRegionList[regionTypeIndex-1].id <= 0)) {
+  //     return false;
+  //   }
 
-    this.setData({
-      regionType: regionTypeIndex + 1
-    })
+  //   this.setData({
+  //     regionType: regionTypeIndex + 1
+  //   })
     
-    let selectRegionItem = selectRegionList[regionTypeIndex];
+  //   let selectRegionItem = selectRegionList[regionTypeIndex];
 
-    this.getRegionList(selectRegionItem.parent_id);
+  //   this.getRegionList(selectRegionItem.parent_id);
 
-    this.setRegionDoneStatus();
+  //   this.setRegionDoneStatus();
 
-  },
-  selectRegion(event) {
-    let that = this;
-    let regionIndex = event.target.dataset.regionIndex;
-    let regionItem = this.data.regionList[regionIndex];
-    let regionType = regionItem.type;
-    let selectRegionList = this.data.selectRegionList;
-    selectRegionList[regionType - 1] = regionItem;
-
-
-    if (regionType != 3) {
-      this.setData({
-        selectRegionList: selectRegionList,
-        regionType: regionType + 1
-      })
-      this.getRegionList(regionItem.id);
-    } else {
-      this.setData({
-        selectRegionList: selectRegionList
-      })
-    }
-
-    //重置下级区域为空
-    selectRegionList.map((item, index) => {
-      if (index > regionType - 1) {
-        item.id = 0;
-        item.name = index == 1 ? '城市' : '区县';
-        item.parent_id = 0;
-      }
-      return item;
-    });
-
-    this.setData({
-      selectRegionList: selectRegionList
-    })
+  // },
+  // selectRegion(event) {
+  //   let that = this;
+  //   let regionIndex = event.target.dataset.regionIndex;
+  //   let regionItem = this.data.regionList[regionIndex];
+  //   let regionType = regionItem.type;
+  //   let selectRegionList = this.data.selectRegionList;
+  //   selectRegionList[regionType - 1] = regionItem;
 
 
-    that.setData({
-      regionList: that.data.regionList.map(item => {
+  //   if (regionType != 3) {
+  //     this.setData({
+  //       selectRegionList: selectRegionList,
+  //       regionType: regionType + 1
+  //     })
+  //     this.getRegionList(regionItem.id);
+  //   } else {
+  //     this.setData({
+  //       selectRegionList: selectRegionList
+  //     })
+  //   }
 
-        //标记已选择的
-        if (that.data.regionType == item.type && that.data.selectRegionList[that.data.regionType - 1].id == item.id) {
-          item.selected = true;
-        } else {
-          item.selected = false;
-        }
+  //   //重置下级区域为空
+  //   selectRegionList.map((item, index) => {
+  //     if (index > regionType - 1) {
+  //       item.id = 0;
+  //       item.name = index == 1 ? '城市' : '区县';
+  //       item.parent_id = 0;
+  //     }
+  //     return item;
+  //   });
 
-        return item;
-      })
-    });
+  //   this.setData({
+  //     selectRegionList: selectRegionList
+  //   })
 
-    this.setRegionDoneStatus();
 
-  },
-  doneSelectRegion() {
-    if (this.data.selectRegionDone === false) {
-      return false;
-    }
+  //   that.setData({
+  //     regionList: that.data.regionList.map(item => {
 
-    let address = this.data.address;
-    let selectRegionList = this.data.selectRegionList;
-    address.province_id = selectRegionList[0].id;
-    address.city_id = selectRegionList[1].id;
-    address.district_id = selectRegionList[2].id;
-    address.province_name = selectRegionList[0].name;
-    address.city_name = selectRegionList[1].name;
-    address.district_name = selectRegionList[2].name;
-    address.full_region = selectRegionList.map(item => {
-      return item.name;
-    }).join('');
+  //       //标记已选择的
+  //       if (that.data.regionType == item.type && that.data.selectRegionList[that.data.regionType - 1].id == item.id) {
+  //         item.selected = true;
+  //       } else {
+  //         item.selected = false;
+  //       }
 
-    this.setData({
-      address: address,
-      openSelectRegion: false
-    });
+  //       return item;
+  //     })
+  //   });
 
-  },
-  cancelSelectRegion() {
-    this.setData({
-      openSelectRegion: false,
-      regionType: this.data.regionDoneStatus ? 3 : 1
-    });
+  //   this.setRegionDoneStatus();
 
-  },
-  getRegionList(regionId) {
-    let that = this;
-    let regionType = that.data.regionType;
-    util.request(api.RegionList, { parentId: regionId }).then(function (res) {
-      if (res.errno === 0) {
-        that.setData({
-          regionList: res.data.map(item => {
+  // },
+  // doneSelectRegion() {
+  //   if (this.data.selectRegionDone === false) {
+  //     return false;
+  //   }
 
-            //标记已选择的
-            if (regionType == item.type && that.data.selectRegionList[regionType - 1].id == item.id) {
-              item.selected = true;
-            } else {
-              item.selected = false;
-            }
+  //   let address = this.data.address;
+  //   let selectRegionList = this.data.selectRegionList;
+  //   address.province_id = selectRegionList[0].id;
+  //   address.city_id = selectRegionList[1].id;
+  //   address.district_id = selectRegionList[2].id;
+  //   address.province_name = selectRegionList[0].name;
+  //   address.city_name = selectRegionList[1].name;
+  //   address.district_name = selectRegionList[2].name;
+  //   address.full_region = selectRegionList.map(item => {
+  //     return item.name;
+  //   }).join('');
 
-            return item;
-          })
-        });
-      }
-    });
-  },
+  //   this.setData({
+  //     address: address,
+  //     openSelectRegion: false
+  //   });
+
+  // },
+  // cancelSelectRegion() {
+  //   this.setData({
+  //     openSelectRegion: false,
+  //     regionType: this.data.regionDoneStatus ? 3 : 1
+  //   });
+
+  // },
+  // getRegionList(regionId) {
+  //   let that = this;
+  //   let regionType = that.data.regionType;
+  //   util.request(api.RegionList, { parentId: regionId }).then(function (res) {
+  //     if (res.errno === 0) {
+  //       that.setData({
+  //         regionList: res.data.map(item => {
+
+  //           //标记已选择的
+  //           if (regionType == item.type && that.data.selectRegionList[regionType - 1].id == item.id) {
+  //             item.selected = true;
+  //           } else {
+  //             item.selected = false;
+  //           }
+
+  //           return item;
+  //         })
+  //       });
+  //     }
+  //   });
+  // },
   bindPickerChange:function(e) {
+    debugger
     this.setData({
-      collegeIndex: e.detail.value
+      collegeIndex: e.detail.value * 1,
+      'address.college_id': this.data.collegeList[e.detail.value * 1].id
     })
+
   },
   cancelAddress(){
     wx.navigateBack({
@@ -287,43 +310,53 @@ Page({
     })
   },
   saveAddress(){
-    console.log(this.data.address)
     let address = this.data.address;
 
     if (address.name == '') {
-      util.showErrorToast('请输入姓名');
-
+      util.showWarnToast('请输入姓名');
       return false;
     }
 
     if (address.mobile == '') {
-      util.showErrorToast('请输入手机号码');
+      util.showWarnToast('请输入手机号码');
+      return false;
+    }
+    if (!verify.isMobile(address.mobile)) {
+      util.showWarnToast('手机号错误');
+      return false;
+    }
+    if (this.data.collegeIndex == 0) {
+      util.showWarnToast('请选择学校');
       return false;
     }
 
-
-    if (address.district_id == 0) {
-      util.showErrorToast('请输入省市区');
-      return false;
-    }
+    // if (address.district_id == 0) {
+    //   util.showErrorToast('请输入省市区');
+    //   return false;
+    // }
 
     if (address.address == '') {
       util.showErrorToast('请输入详细地址');
       return false;
     }
 
-
     let that = this;
-    util.request(api.AddressSave, { 
+    let data = {
       id: address.id,
       name: address.name,
       mobile: address.mobile,
-      province_id: address.province_id,
-      city_id: address.city_id,
-      district_id: address.district_id,
+      // province_id: address.province_id,
+      // city_id: address.city_id,
+      // district_id: address.district_id,
+      college_id: address.college_id,
       address: address.address,
-      is_default: address.is_default,
-    }, 'POST').then(function (res) {
+      is_default: address.is_default
+    }
+    if (address.id < 0) {
+      delete data.id
+    }
+
+    util.request(api.AddressSave, data, 'POST').then( res => {
       if (res.errno === 0) {
         wx.navigateBack({
           delta: 1

@@ -7,7 +7,7 @@
             </view>
             <view class="c">
                 <view class="mobile">{{item.mobile}}</view>
-                <view class="address">{{item.full_region}}</view>
+                <view class="address">{{item.college.name}}</view>
                 <view class="address">{{item.address}}</view>
             </view>
             <view class="r">

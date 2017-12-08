@@ -59,6 +59,7 @@ page{
     flex: 1;
     height: 72.25rpx;
     color: #999;
+    padding-left:15rpx;
 }
 
 .address-box .mobile{

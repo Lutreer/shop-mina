@@ -29,7 +29,7 @@ Page({
   },
   addressAddOrUpdate (event) {
     wx.navigateTo({
-      url: '/pages/shopping/addressAdd/addressAdd?from=shopping&id=' + event.currentTarget.dataset.addressId
+      url: '/pages/ucenter/addressAdd/addressAdd?from=shopping&id=' + event.currentTarget.dataset.addressId
     })
   },
   selectAddress(event){

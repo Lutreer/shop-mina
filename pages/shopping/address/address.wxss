@@ -61,6 +61,7 @@ page{
     flex: 1;
     height: auto;
     overflow: hidden;
+    padding-left:15rpx;
 }
 
 .address-list .mobile{

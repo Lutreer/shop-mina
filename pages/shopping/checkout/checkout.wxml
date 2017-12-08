@@ -7,7 +7,7 @@
             </view>
             <view class="m">
                 <text class="mobile">{{checkedAddress.mobile}}</text>
-                <text class="address">{{checkedAddress.full_region}}</text>
+                <text class="address">{{checkedAddress.college.name}}</text>
                 <text class="address">{{checkedAddress.address}}</text>
             </view>
             <view class="r">
@@ -42,7 +42,7 @@
                 <text class="name">商品合计</text>
             </view>
             <view class="r">
-                <text class="txt">￥{{goodsTotalPrice}}</text>
+                <text class="txt">￥{{totalPrice}}</text>
             </view>
         </view>
         <view class="order-item">
@@ -50,7 +50,7 @@
                 <text class="name">运费</text>
             </view>
             <view class="r">
-                <text class="txt">￥{{freightPrice}}</text>
+                <text class="txt">￥{{freight}}</text>
             </view>
         </view>
         <view class="order-item no-border">
@@ -81,7 +81,7 @@
     </view>
 
     <view class="order-total">
-        <view class="l">实付：￥{{actualPrice}}</view>
+        <view class="l">实付：￥{{payPrice}}</view>
         <view class="r" bindtap="submitOrder">去付款</view>
     </view>
 </view>

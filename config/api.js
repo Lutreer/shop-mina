@@ -51,6 +51,7 @@ module.exports = {
     AddressSave: NewApiRootUrl + 'address/save',  //保存收货地址
     AddressDelete: NewApiRootUrl + 'address/delete',  //保存收货地址
     AddressDefault: NewApiRootUrl + 'address/default',  //获取默认收货地址
+    AddressCollege: NewApiRootUrl + 'address/college',  //获取学校列表
 
     RegionList: NewApiRootUrl + 'region/list',  //获取区域列表
 

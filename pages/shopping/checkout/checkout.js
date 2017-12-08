@@ -6,11 +6,15 @@ var app = getApp();
 
 Page({
   data:{
+    checkedGoodsList:[],
     checkedAddress: {},
-    freightPrice:0,
-    freightLimit: 0,
-    addressId: 0,
-    couponId: 0
+    freightPrice:0, // 规定运费
+    freightLimit: 0, // 运费最低消费
+    addressId: -1,
+    couponId: 0, // 优惠券
+    freight: 0.00, // 实付运费
+    totalPrice:0.00, // 商品合计
+    payPrice: 0.00 // 实付
   },
   onLoad:function(options){
     // 获取默认收货地址
@@ -31,13 +35,13 @@ Page({
   getToBuyGoods: function () {
     
   },
-  getCheckedGoods: function () {
+  getCheckedGoods: function (cb) {
     let that = this
     wx.getStorage({
       key: comConst.checkoutGoods.storageName,
       success: function (res) {
         // 再次校验是否有商品
-        if (res.data.goods.length <= 0){
+        if (res.data.goods.length == 0){
           util.showErrorToast('请先选择商品')
           wx.navigateBack({
             delta: 1
@@ -57,6 +61,8 @@ Page({
           that.setData({
             checkedGoodsList: res.data.goods
           }) 
+
+          cb && cb()
         }
       },
       fail: function() {
@@ -67,16 +73,22 @@ Page({
       }
     })
   },
-  getCheckoutInfo: function () {
+  getCheckoutInfo: function (cb) {
     let that = this;
-    util.request(api.CartCheckout, { addressId: that.data.addressId, couponId: that.data.couponId }).then(function (res) {
+    let params = { addressId: that.data.addressId, couponId: that.data.couponId }
+    if (that.data.addressId < 0){
+      delete params.addressId
+    }
+    util.request(api.CartCheckout, params).then(function (res) {
       if (res.errno === 0) {
         console.log(res.data);
         that.setData({
           checkedAddress: res.data.checkedAddress,
-          freightLimit: res.data.freightLimit,// 运费的最低消费
-          freightPrice: res.data.freightPrice // 运费
+          freightLimit: res.data.freightLimit,// 运费最低消费
+          freightPrice: res.data.freightPrice, // 规定运费
+          freight: res.data.freightPrice, // 实付运费
         });
+        cb && cb()
       }
       wx.hideLoading();
     });
@@ -109,8 +121,30 @@ Page({
     } catch (e) {
       util.showErrorToast('请选择收货地址')
     }
-    this.getCheckoutInfo();
-    this.getCheckedGoods();
+    this.getCheckedGoods(() => {
+      this.getCheckoutInfo(() => {
+        // 计算总价
+
+        let totalPrice = 0
+        this.data.checkedGoodsList.forEach(el => {
+
+          totalPrice = totalPrice + el.number * el.sku.retail_price
+        })
+        this.setData({
+          totalPrice: totalPrice.toFixed(2)
+        })
+        if (this.data.totalPrice * 1 >= this.data.freightLimit) {
+          this.setData({
+            freight: Number(0.00).toFixed(2)
+          })
+        }
+        let payPrice = this.data.totalPrice * 1 + this.data.freight
+        this.setData({
+          payPrice: payPrice.toFixed(2)
+        })
+
+      });
+    });
     
   },
   onHide:function(){
