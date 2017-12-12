@@ -9,7 +9,7 @@
 
   <view class="user-menu">
   <view class="item">
-      <navigator url="/pages/ucenter/order/order" class="a">
+      <navigator url="/pages/ucenter/werun/werun" class="a">
         <text class="icon order"></text>
         <text class="txt">微步排行</text>
       </navigator>

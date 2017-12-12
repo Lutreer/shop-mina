@@ -14,7 +14,7 @@ Page({
   },
   getBrandList: function () {
     wx.showLoading({
-      title: '加载中...',
+      title: '加载中',
     });
     let that = this;
     util.request(api.BrandList, { page: that.data.page, size: that.data.size }).then(function (res) {

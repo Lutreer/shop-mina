@@ -22,7 +22,6 @@ Page({
     });
     util.request(api.GoodsDetail, { id: this.data.id }).then(res => {
       if (res.errno === 0) {
-        debugger
         if (!res.data.goods.goods_sku) {
           util.showErrorToast("商品已下架")
           setTimeout(function() {

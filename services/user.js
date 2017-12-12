@@ -46,9 +46,13 @@ function checkLogin() {
       util.checkSession().then(() => {
         resolve(true);
       }).catch(() => {
+        wx.removeStorageSync('userInfo')
+        wx.removeStorageSync('token')
         reject(false);
       });
     } else {
+      wx.removeStorageSync('userInfo')
+      wx.removeStorageSync('token')
       reject(false);
     }
   });

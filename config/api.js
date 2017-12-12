@@ -61,4 +61,7 @@ module.exports = {
 
     FootprintList: NewApiRootUrl + 'footprint/list',  //足迹列表
     FootprintDelete: NewApiRootUrl + 'footprint/delete',  //删除足迹
+
+    PushWerun: NewApiRootUrl + 'werun/push', //上传个人步数
+    GetWerunList: NewApiRootUrl + 'werun/werunList' // 微步排行
 };

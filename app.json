@@ -29,7 +29,8 @@
     "pages/shopping/checkout/checkout",
     "pages/shopping/address/address",
     "pages/goods/goods",
-    "pages/topicDetail/topicDetail"
+    "pages/topicDetail/topicDetail",
+    "pages/ucenter/werun/werun"
   ],
   "window": {
     "backgroundTextStyle": "dark",

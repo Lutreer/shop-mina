@@ -39,7 +39,7 @@ function request(url, data = {}, method = "GET") {
             return login().then((res) => {
               code = res.code;
               getUserInfo().then((userInfo) => {
-                //登录远程服务器
+                //登录远程服务器, userIfo 需要解密
                 request(api.AuthLoginByWeixin, { code: code, userInfo: userInfo }, 'POST').then(res => {
                   if (res.errno === 0) {
                     //存储用户信息
@@ -55,17 +55,24 @@ function request(url, data = {}, method = "GET") {
                       searchParam = key + "=" + currentPage.options[key]
                     }
                     url = searchParam.length > 0 ? (url + "?" + searchParam) : url
-                    wx.reLaunch({
-                      url: "/" + url
-                    })
+                    try{
+                      wx.redirectTo({
+                        url: "/" + url
+                      })
+                    } catch(e) {
+                      wx.switchTab({
+                        url: 'pages/index/index'
+                      })
+                    }
+                    
                   } else {
-                    showErrorToast("系统错误！")
+                    showErrorToast("系统打盹儿了")
                     wx.navigateBack({
                       delta: 1
                     })
                   }
                 }).catch((err) => {
-                  showErrorToast("系统错误！")
+                  showErrorToast("系统打盹儿了")
                   wx.navigateBack({
                     delta: 1
                   })
@@ -89,13 +96,14 @@ function request(url, data = {}, method = "GET") {
             resolve(res.data);
           }
         } else {
+          showErrorToast("系统打盹儿了")
           reject(res.errMsg);
         }
 
       },
       fail: function (err) {
+        showErrorToast("系统打盹儿了")
         reject(err)
-        console.log("failed")
       }
     })
   });
@@ -125,7 +133,7 @@ function login() {
     wx.login({
       success: function (res) {
         if (res.code) {
-          //登录远程服务器
+          //返回code后把code给我们的远程服务器，它会拿着appId和secret去调用微信的接口取得用户信息和token
           resolve(res);
         } else {
           reject(res);
@@ -151,6 +159,7 @@ function getUserInfo() {
         resolve(res);
       },
       fail: function (err) {
+        debugger
         wx.showModal({
           title: '提示',
           content: '该页面需要获取您的“用户信息”，请点击确定去设置。',
