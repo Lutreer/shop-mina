@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="container">
+   <scroll-view style='height:{{height}}px;' scroll-y='{{scrollY}}'>
+       <view wx:for="{{dataList}}" wx:key="id"  class='data-list-item' animation='{{item.wrapAnimation}}'> 
+            <view id='{{item.id}}' class='data-list' animation='{{item.animation}}' bindtouchstart='ontouchstart' bindtouchmove='ontouchmove' bindtouchend='ontouchend'>
+                <image class='header-img' src="{{item.headerImg}}" ></image>
+                <text class='user-name'>{{item.userName}}</text>
+                <text class='data-list-text'>{{item.msgText}}的发生的发生大法师</text>
+            </view>
+            <view class='data-list-menu'>
+                <view id='{{item.id}}' class='menu-delete' bindtap='onDeleteTap' bindlongtap='onDeleteLongtap'>
+                    删除
+                </view>
+                <view id='{{item.id}}' class='menu-mark' bindtap='onMarkTap' bindlongtap='onMarkLongtap'>
+                    标记未读
+                </view>
+            </view>
+       </view>
+   </scroll-view>
+</view>

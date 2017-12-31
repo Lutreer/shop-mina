@@ -1,0 +1,17 @@
+<view class="container">
+
+
+<form bindsubmit="save">
+     <textarea class="edit_textarea" auto-focus="true" focus="true" maxlength="15" placeholder="最多15个字，可能会赢来很多的赞哦" bindconfirm="finishEnter" value="{{remark}}" name="remark"></textarea>
+
+    <view class="btns">
+        <button class="cannel" bindtap="cancel">取消</button>
+        <button class="save" form-type="submit">保存</button>
+    </view>
+  </form>
+
+
+   
+
+     
+</view>

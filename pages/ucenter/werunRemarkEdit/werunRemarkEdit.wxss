@@ -1,0 +1,33 @@
+ .edit_textarea{
+   padding: 20rpx;
+ }
+ 
+ 
+ .btns{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    display: flex;
+    height: 100rpx;
+    width: 100%;
+}
+
+.cannel,.save{
+    flex: 1;
+    height: 100rpx;
+    text-align: center;
+    line-height: 100rpx;
+    font-size: 28rpx;
+    color: #fff;
+    border:none;
+    border-radius: 0;
+}
+
+.cannel{
+    background: #333;
+}
+
+.save{
+    background: #619433;
+}

@@ -13,9 +13,6 @@ module.exports = {
     GoodsDetail: NewApiRootUrl + 'goods/detail',  //获得商品的详情
     GoodsRankingBanner: NewApiRootUrl + 'goods/rankingBanner',  //新品1、热门2
     GoodsRanking: NewApiRootUrl + 'goods/ranking',  //新品1、热门2
-    // GoodsNew: NewApiRootUrl + 'goods/new',  //新品
-    // GoodsHot: NewApiRootUrl + 'goods/hot',  //热门
-    // GoodsRelated: NewApiRootUrl + 'goods/related',  //商品详情页的关联商品（大家都在看）
 
     BrandList: NewApiRootUrl + 'brand/list',  //品牌列表
     BrandDetail: NewApiRootUrl + 'brand/detail',  //品牌详情
@@ -24,8 +21,8 @@ module.exports = {
     CartAdd: NewApiRootUrl + 'cart/add', // 添加商品到购物车
     CartUpdate: NewApiRootUrl + 'cart/update', // 更新购物车的商品
     CartDelete: NewApiRootUrl + 'cart/delete', // 删除购物车的商品
-    CartGoodsCount: NewApiRootUrl + 'cart/goodscount', // 获取购物车商品件数
-    CartCheckout: NewApiRootUrl + 'cart/checkout', // 下单前信息确认
+    // CartGoodsCount: NewApiRootUrl + 'cart/goodscount', // 获取购物车商品件数
+    CartCheckout: NewApiRootUrl + 'cart/checkout', // 下单前信息确认, 并不会去后台请求商品数据，只是返回app的配置信息，收货地址，微信运动相关的数据。商品数据由localStorage传送
 
     OrderSubmit: NewApiRootUrl + 'order/submit', // 提交订单
     PayPrepayId: NewApiRootUrl + 'pay/payPrepay', //获取微信统一下单prepay_id
@@ -63,5 +60,7 @@ module.exports = {
     FootprintDelete: NewApiRootUrl + 'footprint/delete',  //删除足迹
 
     PushWerun: NewApiRootUrl + 'werun/push', //上传个人步数
-    GetWerunList: NewApiRootUrl + 'werun/werunList' // 微步排行
+    GetWerunList: NewApiRootUrl + 'werun/werunList', // 微步排行
+    UpdateWerunInfo: NewApiRootUrl + 'werun/updateWerunInfo', // 更新
+    WerunToPraise: NewApiRootUrl + 'werun/praiseOthers' // 点赞
 };

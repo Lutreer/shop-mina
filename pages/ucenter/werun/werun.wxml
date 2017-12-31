@@ -1,3 +1,140 @@
-<view class="container">
+<view  class="container" id="werun_container">
+    <view class="tab-h">
+        <view class="tab-item {{currentTab==0?'active':''}}"  data-current="0" bindtap="swichNav">昨天</view>
+        <view class="tab-item today {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">今日排行</view>
+        
+    </view>
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
+     style="height:{{winHeight}}rpx">
 
+     <!-- 昨天 -->
+        <swiper-item>
+            <scroll-view scroll-y="true" class="scoll-h" >
+                <view class="my_werun_info">
+                        <view class="my_avatar">
+                            <image class="my_img" src="{{myWerun.avatar}}"></image>
+                        </view>
+                        <view class="my_expertInfo">
+                            <view class="my_name">
+                            <view class="my_name_name ellipsis">{{myWerun.nickname}}</view>
+                            <view class="my_ranking" wx:if="{{myWerun.ranking > 0}}">(第{{myWerun.ranking}}名)</view>
+                             <view class="my_ranking" wx:if="{{myWerun.ranking <= 0}}">(未参加排名)</view>
+                            </view>
+                            <view class="remark_box">
+                              <view class="my_remark ellipsis">集赞语:{{myWerun.remark}} </view>
+                              <!-- <view class="my_remark_edit">
+                                <image src='/static/images/address_edit.png'></image>
+                              </view> -->
+                            </view>
+                            <!-- <input wx:if="{{remarkEdit}}" class='remark_input' placeholder-class="remark_input_holder" type='text' confirm-type='done' focus='{{remarkEdit}}' bindconfirm="updateRemark" bindblur="updateRemark" maxlength="15" placeholder="最多15个字" value="sdfsdfsfsdfsf" /> -->
+                             <view class="my_praise">
+                                <view class="my_praise_imgbox">
+                                  <image src="/static/images/praise.png"></image>
+                                </view>
+                                <view style="margin-left:4rpx;">{{myWerun.praise}}</view>
+                                 <view class="my_praise_imgbox_ques" bindtap='goToTips'>
+                                 (+{{myWerun.praise * appConfig.werun_praise_steps}}步)
+                                  </view>
+                              </view>
+                              <view class="my_steps_num_box">
+                                <view class="total_steps">{{myWerun.steps + myWerun.praise * appConfig.werun_praise_steps}}</view>
+                                <view class="with_praise_steps_num">({{myWerun.steps + '+' + myWerun.praise * appConfig.werun_praise_steps}})</view>
+                              </view> 
+                               <!-- <view class="my_tips"  bindtap='goToTips'>
+                                去“微信运动”上传步数后可获得较准确的数据 
+                                  <image src="/static/images/question_s.png" style="width:30rpx;height:30rpx;"></image>
+                               </view>  -->
+                        </view>
+                       
+                </view>
+                <block  wx:for="{{werunList}}" wx:key="{{item.id}}">
+                    <view class="item-ans {{(index == 0 || index == 1 || index == 2) ? 'praise_uers' : ''}}">
+                        <view class="ranking">{{index + 1}}</view>
+                        <view class="avatar">
+                            <image class="img" src="{{item.avatar}}"></image>
+                        </view>
+                        <view class="expertInfo">
+                            <view class="name ellipsis">{{item.nickname}}</view>
+                            <view class="remark ellipsis">{{item.remark}}</view>
+                        </view>
+                        <view class="steps_box">
+                          <view class="list_steps">{{item.steps + appConfig.werun_praise_steps * item.praise}}</view>
+                          <view class="list_praise" data-index='{{index}}' data-id='{{item.id}}'>
+                            <view class="my_praise_imgbox">
+                              <image src="/static/images/praise.png"></image>
+                            </view>
+                            {{item.praise}}
+                          </view>
+                        </view> 
+                    </view>
+                </block>
+            </scroll-view>
+        </swiper-item>
+
+
+
+<!-- 今日排行 -->
+        <swiper-item>
+            <scroll-view scroll-y="true" class="scoll-h" >
+                <view class="my_werun_info">
+                        <view class="my_avatar">
+                            <image class="my_img" src="{{myWerun.avatar}}"></image>
+                        </view>
+                        <view class="my_expertInfo">
+                            <view class="my_name">
+                            <view class="my_name_name ellipsis">{{myWerun.nickname}}</view>
+                            <view class="my_ranking" wx:if="{{myWerun.ranking > 0}}">(第{{myWerun.ranking}}名)</view>
+                             <view class="my_ranking" wx:if="{{myWerun.ranking <= 0}}">(未参加排名)</view>
+                            </view>
+                            <view class="remark_box" bindtap='goEditRemark'>
+                              <view class="my_remark ellipsis">集赞语:{{myWerun.remark}} </view>
+                              <view class="my_remark_edit">
+                                <image src='/static/images/address_edit.png'></image>
+                              </view>
+                            </view>
+                            <!-- <input wx:if="{{remarkEdit}}" class='remark_input' placeholder-class="remark_input_holder" type='text' confirm-type='done' focus='{{remarkEdit}}' bindconfirm="updateRemark" bindblur="updateRemark" maxlength="15" placeholder="最多15个字" value="sdfsdfsfsdfsf" /> -->
+                             <view class="my_praise">
+                                <view class="my_praise_imgbox">
+                                  <image src="/static/images/praise.png"></image>
+                                </view>
+                                <view style="margin-left:4rpx;">{{myWerun.praise}}</view>
+                                 <view class="my_praise_imgbox_ques" bindtap='goToTips'>
+                                 (+{{myWerun.praise * appConfig.werun_praise_steps}}步<image src="/static/images/question_s.png"  style="width:30rpx;height:30rpx;"></image>)
+                                  </view>
+                              </view>
+                              <view class="my_steps_num_box">
+                                <view class="total_steps">{{myWerun.steps + myWerun.praise * appConfig.werun_praise_steps}}</view>
+                                <view class="with_praise_steps_num">({{myWerun.steps + '+' + myWerun.praise * appConfig.werun_praise_steps}})</view>
+                              </view> 
+                               <view class="my_tips"  bindtap='goToTips'>
+                                去“微信运动”上传步数后可获得较准确的数据 
+                                  <image src="/static/images/question_s.png" style="width:30rpx;height:30rpx;"></image>
+                               </view> 
+                        </view>
+                       
+                </view>
+                <block  wx:for="{{werunList}}" wx:key="{{item.id}}">
+                    <view class="item-ans {{(index == 0 || index == 1 || index == 2) ? 'praise_uers' : ''}}">
+                        <view class="ranking">{{index + 1}}</view>
+                        <view class="avatar">
+                            <image class="img" src="{{item.avatar}}"></image>
+                        </view>
+                        <view class="expertInfo">
+                            <view class="name ellipsis">{{item.nickname}}</view>
+                            <view class="remark ellipsis">{{item.remark}}</view>
+                        </view>
+                        <view class="steps_box">
+                          <view class="list_steps">{{item.steps + appConfig.werun_praise_steps * item.praise}}</view>
+                          <view class="list_praise" bindtap='praiseOthers' data-index='{{index}}' data-id='{{item.id}}'>
+                            <view class="my_praise_imgbox">
+                              <image src="/static/images/praise.png"></image>
+                            </view>
+                            {{item.praise}}
+                          </view>
+                        </view> 
+                    </view>
+                </block>
+            </scroll-view>
+        </swiper-item>
+    </swiper>
 </view>

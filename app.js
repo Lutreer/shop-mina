@@ -4,21 +4,26 @@ var user = require('./services/user.js');
 
 App({
   onLaunch: function () {
+    this.login()
+  },
+  login:function(cb) {
     //获取用户的登录信息
     user.checkLogin().then(res => {
       this.globalData.userInfo = wx.getStorageSync('userInfo');
       this.globalData.token = wx.getStorageSync('token');
+      cb && cb()
     }).catch((rs) => {
-        // 用户授权登录
-        user.loginByWeixin().then(res => {
-            this.globalData.userInfo = wx.getStorageSync('userInfo');
-            this.globalData.token = wx.getStorageSync('token');
-        }).catch((rs) => {
-        });
+      // 用户授权登录
+      user.loginByWeixin().then(res => {
+        this.globalData.userInfo = wx.getStorageSync('userInfo');
+        this.globalData.token = wx.getStorageSync('token');
+        cb && cb()
+      }).catch((rs) => {
+      });
     });
   },
-  
   globalData: {
+    deviceInfo: wx.getSystemInfoSync(),
     userInfo: {
       nickname: 'Hi,客官',
       username: '点击去登录',

@@ -1,1 +1,243 @@
-/* pages/ucenter/weRun/weRun.wxss */
+#werun_container{
+  background: #fff;
+}
+.tab-h {
+  height: 65rpx;
+  width: 100%;
+  background: #fff;
+color: #999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display:flex;
+align-content:center;
+
+}
+
+.tab-item {
+  flex:1;
+display:flex;
+align-items:center;
+justify-content:center;
+border-bottom:3rpx solid #ccc;
+}
+.today{
+  flex:3
+}
+.tab-item.active {
+  color: #619433;
+ border-bottom:4rpx solid #619433;
+
+}
+
+.my_werun_info{
+  background:#f6f9f1;
+  display:flex;
+  height:350rpx;
+  padding:25rpx;
+}
+.my_name{
+  display: flex;
+  align-items:flex-end;
+}
+.my_name .my_name_name{
+  font-size:32rpx;
+}
+.my_name .my_ranking{
+  margin-left: 10rpx;
+  color:#999;
+  font-size: 24rpx;
+}
+.my_praise{
+display:flex;
+align-items:center;
+margin-top:30rpx;
+width:350rpx;
+}
+.my_praise_imgbox{
+  width: 45rpx;
+  height: 45rpx;
+}
+
+.my_praise_imgbox image{
+  width: 100%;
+  height: 100%;
+}
+.my_praise_imgbox_ques{
+  width:220rpx;
+margin-left:8rpx;
+ align-items:center;
+display:flex;
+color:#999;
+font-size: 24rpx;
+}
+.my_praise_imgbox_ques image{
+  width: 100%;
+  height: 100%;
+}
+.remark_box{
+  display: flex;
+}
+.my_remark{
+  color: #999;
+  max-width: 540rpx;
+}
+remark_input_default{
+  width:500rpx;
+}
+.remark_input_focus{
+  border:1rpx solid #ccc;
+  border-radius:4rpx;
+  padding: 6rpx 8rpx 3rpx 8rpx;
+}
+.my_remark_edit{
+ width:40rpx;
+  height:60rpx;
+  padding:0 0 20rpx 0;
+
+}
+.my_remark_edit image{
+  width: 100%;
+  height:100%;
+}
+.remark_input_holder{
+  color: #999;
+  font-size: 28rpx;
+}
+.my_expertInfo .my_tips{
+  font-size:24rpx;
+  color:#999;
+  display: flex;
+}
+.my_expertInfo .my_tips .tips{
+  font-size:24rpx;
+  color:#999;
+}
+.my_expertInfo .my_tips .tips_more{
+  font-size:24rpx;
+  margin-left: 10rpx;
+  color:#999;
+}
+
+
+.item-ans {
+  width: 100%;
+  display: flex;
+  flex-grow: row no-wrap;
+  justify-content: space-between;
+  padding:30rpx 20rpx;
+  box-sizing: border-box;
+  align-items: center;
+  border-bottom: 1px solid #F2F2F2;
+}
+
+.my_avatar {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.my_avatar .my_img {
+  width: 100%;
+  height: 100%;
+}
+
+
+.my_expertInfo {
+  flex-grow: 1;
+  color: #B0B0B0;
+  margin-left:20rpx;
+
+}
+
+.my_expertInfo .my_name {
+  color: #000;
+}
+.my_steps_num_box{
+  display:flex;
+  align-items:baseline;
+}
+#werun_container .total_steps{
+  color:#f48f18;
+  font-size:70rpx;
+}
+#werun_container .with_praise_steps_num{
+  color:#999;
+  font-size:24rpx;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  margin:0 10rpx 0 0;
+}
+
+.avatar .img {
+  width: 100%;
+  height: 100%;
+}
+
+
+.expertInfo {
+  color:#B0B0B0;
+width:400rpx;
+
+}
+.steps_box{
+  width: 150rpx;
+}
+.expertInfo .name {
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+}
+
+#werun_container .steps view{
+  width: 120rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #f48f18;
+}
+
+.tab-content {
+  margin-top: 65rpx;
+}
+.ranking{
+  font-weight: bold;
+  width:60rpx;
+  text-align: center;
+}
+.scoll-h {
+  height: 100%;
+}
+.remark{
+  color: #ccc;
+  font-size:24rpx;
+
+}
+.list_steps{
+  color:#f48f18;
+  text-align: center;
+  font-size:40rpx;
+}
+.list_praise{
+  display: flex;
+  justify-content: center;
+  color:#999;
+  line-height:46rpx;
+}
+.praise_uers{
+  background: #fdf8f4;
+}

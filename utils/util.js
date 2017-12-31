@@ -233,7 +233,13 @@ function showInfoToast(msg, duration = 1500, mask = true) {
 
   })
 }
+function px2rpx(px, windowWidth) {
+  return Math.round(px * 750 / windowWidth);
+}
 
+function rpx2px(rpx, windowWidth) {
+  return Math.round(rpx / 750 * windowWidth);
+}
 module.exports = {
   formatTime,
   request,
@@ -244,6 +250,8 @@ module.exports = {
   checkSession,
   login,
   getUserInfo,
+  px2rpx,
+  rpx2px
 }
 
 

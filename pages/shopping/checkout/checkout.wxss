@@ -14,9 +14,9 @@ page{
 
 .address-item{
     display: flex;
-    height: 155.55rpx;
+    height: 160rpx;
     background: #fff;
-    padding: 41.6rpx 0 41.6rpx 31.25rpx;
+    padding: 40rpx 0 40rpx 30rpx;
 }
 
 .address-item.address-empty{
@@ -57,7 +57,7 @@ page{
 
 .address-box .m{
     flex: 1;
-    height: 72.25rpx;
+    height: 73rpx;
     color: #999;
     padding-left:15rpx;
 }
@@ -66,17 +66,18 @@ page{
     display: block;
     height: 29rpx;
     line-height: 29rpx;
-    margin-bottom: 6.25rpx;
+    margin-bottom: 6rpx;
     font-size: 30rpx;
     color:#333;
 }
 
 .address-box .address{
     display: block;
-    height: 37.5rpx;
-    line-height: 37.5rpx;
+    height: 38rpx;
+    line-height: 37rpx;
     font-size: 24rpx;
     color:#666;
+    width:480rpx;
 }
 
 .address-box .r{
@@ -172,7 +173,7 @@ page{
     float: right;
     text-align: right;
     width: 50%;
-    height: 52rpx;
+    /* height: 52rpx; */
     line-height: 52rpx;
     overflow: hidden;
 }

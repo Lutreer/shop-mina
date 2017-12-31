@@ -1,6 +1,6 @@
 <view class="container">
-    <view class="address-list" wx:if="{{ addressList.length > 0 }}">
-        <view class="item" wx:for="{{addressList}}" wx:key="{{item.id}}" bindtap="addressAddOrUpdate" data-address-id="{{item.id}}">
+    <view class="address-list" wx:if="{{ dataList.length > 0 }}">
+        <view class="item" wx:for="{{dataList}}" wx:key="{{item.id}}" bindtap="addressAddOrUpdate" data-address-id="{{item.id}}">
             <view class="l">
                 <view class="name">{{item.name}}</view>
                 <view class="default" wx:if="{{item.is_default}}">默认</view>
@@ -15,9 +15,31 @@
             </view>
         </view>
     </view>
-    <view class="empty-view" wx:if="{{ addressList.length <= 0 }}">
+    <view class="empty-view" wx:if="{{ dataList.length <= 0 }}">
       <image class="icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noAddress-26d570cefa.png"></image>
       <text class="text">收货地址在哪里</text>
     </view>
     <view class="add-address" bindtap="addressAddOrUpdate" data-address-id="0">新建</view>
 </view>
+
+<!-- 下面是左划删除代码，未完成 -->
+<!-- 
+<view class="container">
+   <scroll-view style='height:{{height}}px;' scroll-y='{{scrollY}}'>
+       <view wx:for="{{dataList}}" wx:key="id"  class='data-list-item' animation='{{item.wrapAnimation}}'> 
+            <view id='{{item.id}}' class='data-list' animation='{{item.animation}}' bindtouchstart='ontouchstart' bindtouchmove='ontouchmove' bindtouchend='ontouchend'>
+                <image class='header-img' src="{{item.headerImg}}" ></image>
+                <text class='user-name'>{{item.name}}</text>
+                <text class='data-list-text'>{{item.address}}</text>
+            </view>
+            <view class='data-list-menu'>
+                <view id='{{item.id}}' class='menu-delete' bindtap='onDeleteTap' bindlongtap='onDeleteLongtap'>
+                    删除
+                </view>
+                <view id='{{item.id}}' class='menu-mark' bindtap='onMarkTap' bindlongtap='onMarkLongtap'>
+                    标记未读
+                </view>
+            </view>
+       </view>
+   </scroll-view>
+</view> -->

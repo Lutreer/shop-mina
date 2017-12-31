@@ -131,7 +131,7 @@ Page({
     let checkedGoodsPrice = 0
     for (let itemIndex = 0, l = goods.length; itemIndex < l; itemIndex++) {
       let sku = goods[itemIndex].goods.sku
-      if (goods[itemIndex].selected && goods.goods.status == 1 && goods.goods.is_on_sale == 1 && sku) {
+      if (goods[itemIndex].selected && goods[itemIndex].goods.status == 1 && goods[itemIndex].goods.is_on_sale == 1 && sku) {
           // 计算总价
           let num = goods[itemIndex].number
           let _checkedGoodsPrice = checkedGoodsPrice * 1 + sku.retail_price * num

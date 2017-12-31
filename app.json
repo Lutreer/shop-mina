@@ -30,14 +30,16 @@
     "pages/shopping/address/address",
     "pages/goods/goods",
     "pages/topicDetail/topicDetail",
-    "pages/ucenter/werun/werun"
+    "pages/ucenter/werun/werun",
+    "pages/ucenter/werunTips/werunTips",
+    "pages/ucenter/werunRemarkEdit/werunRemarkEdit"
   ],
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "demo",
     "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": "true",
+    "enablePullDownRefresh": true,
     "onReachBottomDistance": 100
   },
   "tabBar": {
