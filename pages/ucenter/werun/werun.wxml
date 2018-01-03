@@ -10,7 +10,8 @@
      <!-- 昨天 -->
         <swiper-item>
             <scroll-view scroll-y="true" class="scoll-h" >
-                <view class="my_werun_info">
+                <view class="my_werun_info no_join" wx:if="{{!myWerun.id}}">未参与</view>
+                <view class="my_werun_info" wx:if="{{myWerun.id}}">
                         <view class="my_avatar">
                             <image class="my_img" src="{{myWerun.avatar}}"></image>
                         </view>
@@ -18,7 +19,7 @@
                             <view class="my_name">
                             <view class="my_name_name ellipsis">{{myWerun.nickname}}</view>
                             <view class="my_ranking" wx:if="{{myWerun.ranking > 0}}">(第{{myWerun.ranking}}名)</view>
-                             <view class="my_ranking" wx:if="{{myWerun.ranking <= 0}}">(未参加排名)</view>
+                             <view class="my_ranking" wx:if="{{myWerun.ranking <= 0}}">(未上榜)</view>
                             </view>
                             <view class="remark_box">
                               <view class="my_remark ellipsis">集赞语:{{myWerun.remark}} </view>
@@ -32,7 +33,7 @@
                                   <image src="/static/images/praise.png"></image>
                                 </view>
                                 <view style="margin-left:4rpx;">{{myWerun.praise}}</view>
-                                 <view class="my_praise_imgbox_ques" bindtap='goToTips'>
+                                 <view class="my_praise_imgbox_ques">
                                  (+{{myWerun.praise * appConfig.werun_praise_steps}}步)
                                   </view>
                               </view>
@@ -76,7 +77,8 @@
 <!-- 今日排行 -->
         <swiper-item>
             <scroll-view scroll-y="true" class="scoll-h" >
-                <view class="my_werun_info">
+                <view class="my_werun_info no_join" wx:if="{{!myWerun.id}}">未参与</view>
+                <view class="my_werun_info" wx:if="{{myWerun.id}}">
                         <view class="my_avatar">
                             <image class="my_img" src="{{myWerun.avatar}}"></image>
                         </view>
@@ -84,7 +86,7 @@
                             <view class="my_name">
                             <view class="my_name_name ellipsis">{{myWerun.nickname}}</view>
                             <view class="my_ranking" wx:if="{{myWerun.ranking > 0}}">(第{{myWerun.ranking}}名)</view>
-                             <view class="my_ranking" wx:if="{{myWerun.ranking <= 0}}">(未参加排名)</view>
+                             <view class="my_ranking" wx:if="{{myWerun.ranking <= 0}}">(未上榜)</view>
                             </view>
                             <view class="remark_box" bindtap='goEditRemark'>
                               <view class="my_remark ellipsis">集赞语:{{myWerun.remark}} </view>

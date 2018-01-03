@@ -75,7 +75,17 @@ Page({
           if (res.errno === 0) {
             // 上传自己的步数后获取步数排行
             that.getWerunList()
-          } else {
+          } else if(res.errno === 1101){
+            wx.showModal({
+              title: '提示',
+              content: res.errmsg,
+              success: function (res) {
+                that.getWerunList()
+              }
+            })
+            // util.showErrorToast(res.errmsg)
+            // setTimeout(that.getWerunList, 1500)
+          }else {
             if (that.data.pushTryTimes < 1){
               that.setData({
                 pushTryTimes: 1
@@ -103,21 +113,28 @@ Page({
           title: '提示',
           content: '该页面需要获取您的“微信步数”，请点击确定去设置。',
           success: function (res) {
-            wx.openSetting({
-              success(res) {
-                if (res.authSetting['scope.werun']) {
-                  getWeRun()
-                } else {
-                  wx.navigateBack({
-                    delta: -1
-                  })
+
+            if (res.confirm) {
+              wx.openSetting({
+                success(res) {
+                  if (res.authSetting['scope.werun']) {
+                    getWeRun()
+                  } else {
+                    wx.switchTab({
+                      url: '/pages/ucenter/index/index'
+                    })
+                  }
                 }
-              }
-            })
+              })
+            } else if (res.cancel) {
+              wx.switchTab({
+                url: '/pages/ucenter/index/index'
+              })
+            }
           },
           fail: function () {
-            wx.navigateBack({
-              delta: -1
+            wx.switchTab({
+              url: '/pages/ucenter/index/index'
             })
           }
         })
@@ -178,20 +195,26 @@ Page({
       url: '/pages/ucenter/werunRemarkEdit/werunRemarkEdit?remark=' + this.data.myWerun.remark + '&id=' + this.data.myWerun.id
     })
   },
-  // more>>  一些提示和攻略
+  // ？提示和攻略
   goToTips: function() {
     wx.navigateTo({
       url: '/pages/ucenter/werunTips/werunTips'
     })
   },
   praiseOthers: function(e) {
-    wx.showLoading({
-      title: '拼命点赞ing',
-    });
+    // 时间验证
+    if (new Date() >= new Date(util.formatDate(new Date(), 'yyyy-MM-dd') + ' ' + this.data.appConfig.werun_deadline)) {
+      util.showErrorToast('该时段无法点赞')
+      return false
+    }
+    // 次数验证
     if (this.data.myWerun.praise_times >= this.data.appConfig.werun_praise_limit){
       util.showErrorToast('每天最多赞' + this.data.appConfig.werun_praise_limit + '次哦' )
       return false
     }
+    wx.showLoading({
+      title: '拼命点赞ing',
+    });
     let id = e.currentTarget.dataset.id
     let index = e.currentTarget.dataset.index * 1
     util.request(api.WerunToPraise, { id: id }, "POST").then(res => {
@@ -211,7 +234,9 @@ Page({
           })
         }
 
-      } else {
+      } else if (res.errno === 1101){
+        util.showErrorToast(res.errmsg) // 该时段无法点赞
+      }else {
         util.showErrorToast(res.errmsg || '点赞失败')
         
       }

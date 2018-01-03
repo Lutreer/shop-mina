@@ -195,11 +195,12 @@ Page({
   },
   onUnload:function(){
     // 页面关闭
-    wx.removeStorageSync(comConst.checkoutGoods.storageName)// 删除本地缓存的商品
+    // wx.removeStorageSync(comConst.checkoutGoods.storageName)// 删除本地缓存的商品
     // wx.removeStorageSync('addressId')
   },
+
+  // 提交订单
   submitOrder: function(){
-    
     // 校验是否有收货地址
     if (!this.data.checkedAddress.id) {
       util.showErrorToast('请选择收货地址');
@@ -210,32 +211,103 @@ Page({
       util.showErrorToast('请选择商品');
       return false;
     }
-// 封装提交的数据：收货地址id，是否使用微信步数抵扣，商品id和对应的规格id，实付(用于后台校验订单的准确性)
-let orderData = {
-  addressId: this.data.checkedGoodsList.id,
-  isUseWerun: this.data.useWerun,
-  goods: [],
-  payMoney: this.data.payPrice
-}
-for(let i = 0, l = this.data.checkedGoodsList.length; i < l; i++){
-  orderData.goods.push({
-    goodId: this.data.checkedGoodsList[i].id,
-    skuId: this.data.checkedGoodsList[i].sku.id
-  })
-}
+    // 封装提交的数据：收货地址id，是否使用微信步数抵扣，商品id和对应的规格id，实付(用于后台校验订单的准确性)
+    let orderData = {
+      address: { id: this.data.checkedAddress.id},
+      isUseWerun: this.data.useWerun,
+      werunMoney: this.data.werunDedPrice,
+      weightMoney: this.data.freight,
+      goods: [],
+      payMoney: this.data.payPrice
+    }
+    for(let i = 0, l = this.data.checkedGoodsList.length; i < l; i++){
+      orderData.goods.push({
+        goodId: this.data.checkedGoodsList[i].id,
+        skuId: this.data.checkedGoodsList[i].sku.id,
+        number: this.data.checkedGoodsList[i].number
+      })
+    }
 
-
-    util.request(api.OrderSubmit, { addressId: that.data.addressId, couponId: that.data.couponId }, 'POST').then(function (res) {
+    util.request(api.OrderSubmit, orderData, 'POST').then(function (res) {
       if (res.errno === 0) {
-        wx.redirectTo({
-          url: '/pages/pay/pay?orderId=' + res.data.orderInfo.id + '&actualPrice=' + res.data.orderInfo.actual_price
-        })
+        // wx.redirectTo({
+        //   url: '/pages/pay/pay?orderId=' + res.data.orderInfo.id + '&actualPrice=' + res.data.orderInfo.actual_price
+        // })
       
       } else {
-        util.showErrorToast(res.data.errmsg);
+        // util.showErrorToast(res.data.errmsg);
       }
     });
+  },
 
-   
+// 干扰因素太多不利于用户下单，尽量减少干扰因素
+  pushWerun: function () {
+    wx.showLoading({
+      title: '更新步数',
+    });
+    let that = this
+    // 获取用户步数并上传，然后返回可以抵扣的相关数据
+    wx.getWeRunData({
+      success(res) {
+        util.request(api.PushWerun, { encryptedData: res }, 'POST').then(res => {
+          wx.hideLoading();
+          if (res.errno === 0) {
+            // 上传自己的步数后获取可使用的抵扣信息
+            // 要更新页面数据：可抵扣钱数，实付金额
+            that.setData({
+              werunMaxDedUnits: res.data.werunMaxDedUnits // 最大可抵扣的单位数量
+            })
+            // 3.计算微信步数可抵扣的部分
+            let werunDedPrice = 0.00
+            // a.微信抵扣可用；b.用户使用抵扣；c.步数达到最低抵扣数;d.商品总价达到最低可抵扣额度
+            if (that.data.werunDedStatus && that.data.useWerun && that.data.werunMaxDedUnits > 0 && that.data.goodsPrice >= that.data.werunDedOrderMiniPrice) {
+              let werunGoodsDedUnits = parseInt(((that.data.goodsPrice * 1) / that.data.werunDedOrderMiniPrice), 10) //订单最多实际可以抵扣的单位
+              let realUnits = that.data.werunMaxDedUnits > werunGoodsDedUnits ? werunGoodsDedUnits : that.data.werunMaxDedUnits
+              werunDedPrice = realUnits * that.data.werunDedStepsPeice
+              that.setData({
+                werunDedPrice: werunDedPrice,
+                restWerunSteps: res.data.restWerunSteps
+              })
+            }
+            let payPrice = that.data.goodsPrice * 1 + that.data.freight * 1 - that.data.werunDedPrice
+            that.setData({
+              payPrice: payPrice.toFixed(2)
+            })
+          } else if (res.errno === 1101) {
+            util.showErrorToast('该时段无法更新')
+          } else {
+            // （一般不会出现的）上传失败，默默的消化这个错误吧，不再打扰用户下单
+            util.showErrorToast('更新步数失败')
+          }
+        })
+      },
+      // 用户之前拒绝了使用微信运动数据的权限
+      fail(e) {
+        wx.hideLoading();
+        wx.showModal({
+          title: '提示',
+          content: '该页面需要获取您的“微信步数”，请点击确定去设置。',
+          success: function (res) {
+
+            if (res.confirm) {
+              wx.openSetting({
+                success(res) {
+                  if (res.authSetting['scope.werun']) {
+                    that.pushWerun() // 用户允许后再次尝试上传
+                  } else {
+                    // 用户拒绝就拒绝吧，不在感染用户下单
+                    // util.showErrorToast('无法使用优惠')
+                  }
+                }
+              })
+            } else if (res.cancel) {
+             // 用户拒绝就拒绝吧，不在影响用户下单
+            }
+          },
+          fail: function () {
+          }
+        })
+      }
+    })
   }
 })

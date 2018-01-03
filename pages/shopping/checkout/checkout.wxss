@@ -151,20 +151,19 @@ page{
 }
 
 .order-box .order-item{
-    height: 104.3rpx;
     overflow: hidden;
     background: #fff;
     display: flex;
-    margin-left: 31.25rpx;
-    padding-right: 31.25rpx;
+    margin-left: 31rpx;
+    padding-right: 31rpx;
     padding-top: 26rpx;
+    padding-bottom: 26rpx;
     border-bottom: 1px solid #d9d9d9;
+    justify-content:space-between;
 }
 
 .order-box .order-item .l{
     float: left;
-    height: 52rpx;
-    width: 50%;
     line-height: 52rpx;
     overflow: hidden;
 }
@@ -177,7 +176,17 @@ page{
     line-height: 52rpx;
     overflow: hidden;
 }
-
+.order-box .order-item .r-use-werun{
+    float: right;
+    text-align: right;
+    line-height: 52rpx;
+    overflow: hidden;
+    display:flex;
+    align-items:center;
+}
+.use_werun_tips{
+  color:#999;
+}
 .order-box .order-item.no-border{
     border-bottom: none;
 }

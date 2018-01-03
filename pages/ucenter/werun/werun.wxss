@@ -37,6 +37,12 @@ border-bottom:3rpx solid #ccc;
   height:350rpx;
   padding:25rpx;
 }
+.no_join{
+  font-size:80rpx;
+  justify-content:center;
+  align-items:center;
+  color:#ddd;
+}
 .my_name{
   display: flex;
   align-items:flex-end;

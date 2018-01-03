@@ -57,8 +57,11 @@
         <view class="order-item no-border" wx:if="{{werunDedStatus}}">
             <view class="l">
                 <text class="name">可用微信步数抵扣{{werunDedPrice}}元</text>
+                <span style="color:#619433;text-decoration:underline;" bindtap="pushWerun">(更新步数)</span>
+                <view class="use_werun_tips">1.每{{werunDedSteps}}步可折算为{{werunDedStepsPeice}}元(当前可用{{restWerunSteps}}步)</view>
+                <view class="use_werun_tips">2.订单商品每满{{werunDedOrderMiniPrice}}元可抵扣{{werunDedStepsPeice}}元</view>
             </view>
-            <view class="r">
+            <view class="r-use-werun">
                 <switch bindchange="switchUseWerun" disabled="{{werunDedPrice <= 0}}" checked="{{werunDedPrice > 0 && useWerun}}"/>
             </view>
         </view>
