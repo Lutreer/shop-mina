@@ -216,7 +216,7 @@ Page({
       address: { id: this.data.checkedAddress.id},
       isUseWerun: this.data.useWerun,
       werunMoney: this.data.werunDedPrice,
-      weightMoney: this.data.freight,
+      freightMoney: this.data.freight,
       goods: [],
       payMoney: this.data.payPrice
     }
