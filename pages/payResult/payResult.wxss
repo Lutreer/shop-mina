@@ -15,11 +15,20 @@ page {
 
 .pay-result .msg {
   text-align: center;
-  margin: 100rpx auto;
+  margin: 100rpx auto 60rpx auto;
   color: #2bab25;
   font-size: 36rpx;
 }
+.pay-result .success .tips {
+  color: #7f7f7f;
+  margin-bottom: 70rpx;
+}
 
+.pay-result .success .tips .p {
+  font-size: 24rpx;
+  line-height: 42rpx;
+  text-align: center;
+}
 .pay-result .btns {
   display: flex;
   align-items: center;

@@ -25,7 +25,8 @@ module.exports = {
     CartCheckout: NewApiRootUrl + 'cart/checkout', // 下单前信息确认, 并不会去后台请求商品数据，只是返回app的配置信息，收货地址，微信运动相关的数据。商品数据由localStorage传送
 
     OrderSubmit: NewApiRootUrl + 'order/submit', // 提交订单
-    PayPrepayId: NewApiRootUrl + 'pay/payPrepay', //获取微信统一下单prepay_id
+    OrderPayClientSuccess: NewApiRootUrl + 'pay/orderPayClientSuccess',
+    Prepay: NewApiRootUrl + 'pay/prepay', //获取微信统一下单prepay_id
 
     CollectList: NewApiRootUrl + 'collect/list',  //收藏列表
     CollectAddOrDelete: NewApiRootUrl + 'collect/addordelete',  //添加或取消收藏

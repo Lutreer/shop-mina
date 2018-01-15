@@ -23,7 +23,9 @@ Page({
     restWerunSteps: 0,// 剩余可抵扣的步数
     werunMaxDedUnits: 0, // 最大可抵扣的单位数量
 
-    useWerun: true
+    useWerun: true,
+
+    submitOrderTryTimes: 0
   },
   onLoad:function(options){
     // 第一进入时删除掉之前选择的收货地址
@@ -191,7 +193,6 @@ Page({
   },
   onHide:function(){
     // 页面隐藏
-    debugger
   },
   onUnload:function(){
     // 页面关闭
@@ -201,6 +202,10 @@ Page({
 
   // 提交订单
   submitOrder: function(){
+    wx.showLoading({
+      title:'下单中',
+      mask: true
+    })
     // 校验是否有收货地址
     if (!this.data.checkedAddress.id) {
       util.showErrorToast('请选择收货地址');
@@ -228,15 +233,60 @@ Page({
       })
     }
 
-    util.request(api.OrderSubmit, orderData, 'POST').then(function (res) {
+    util.request(api.OrderSubmit, orderData, 'POST').then(res => {
+
       if (res.errno === 0) {
+        // TODO
+        wx.requestPayment({
+          'timeStamp': res.data.timeStamp,
+          'nonceStr': res.data.nonceStr,
+          'package': res.data.package,
+          'signType': res.data.signType,
+          'paySign': res.data.paySign,
+          'success': function (wxPayRes) {
+            // 支付成功，修改订单状态
+            util.request(api.OrderPayClientSuccess, { id: wxPayRes.data.statusCode, sn: wxPayRes.data.orderSN, status: wxPayRes.data.orderId}, 'POST').then(successRes => {
+              debugger
+              if (successRes.errno === 0) {
+                wx.navigateTo({
+                  url: '/pages/payResult/payResult?status=1', // 1:支付成功；2：支付失败
+                })
+              }else{
+                wx.navigateTo({
+                  url: '/pages/payResult/payResult?status=2&orderId=' + res.data.statusCode
+                })
+              }
+            })
+
+          },
+          'fail': function (successRes) {
+            wx.navigateTo({
+              url: '/pages/payResult/payResult?status=2&orderId=' + res.data.statusCode
+            })
+          },
+          'complete': function (successRes) {
+
+          }
+        })
         // wx.redirectTo({
         //   url: '/pages/pay/pay?orderId=' + res.data.orderInfo.id + '&actualPrice=' + res.data.orderInfo.actual_price
         // })
       
+        wx.hideLoading()
       } else {
-        // util.showErrorToast(res.data.errmsg);
+        this.setData({
+          submitOrderTryTimes: this.data.submitOrderTryTimes + 1
+        })
+        //  用户主动尝试 3 次，仍失败则返回上一页
+        if (this.data.submitOrderTryTimes >= 3){
+        wx.navigateBack({
+          delta: 1
+        })
+        }
+        wx.hideLoading()
+        util.showErrorToast(res.errmsg);
       }
+      
     });
   },
 
@@ -295,7 +345,7 @@ Page({
                   if (res.authSetting['scope.werun']) {
                     that.pushWerun() // 用户允许后再次尝试上传
                   } else {
-                    // 用户拒绝就拒绝吧，不在感染用户下单
+                    // 用户拒绝就拒绝吧，不在干扰用户下单
                     // util.showErrorToast('无法使用优惠')
                   }
                 }

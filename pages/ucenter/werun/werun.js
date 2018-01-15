@@ -79,6 +79,7 @@ Page({
             wx.showModal({
               title: '提示',
               content: res.errmsg,
+              showCancel: false,
               success: function (res) {
                 that.getWerunList()
               }

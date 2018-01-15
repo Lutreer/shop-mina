@@ -1,13 +1,16 @@
 <view class="container">
   <view class="pay-result">
-    <view class="success" wx:if="{{status == true}}">
+    <view class="success" wx:if="{{status == 1}}">
       <view class="msg">付款成功</view>
+      <view class="tips">
+        <view class="p">{{time}}秒钟后返回首页</view>
+      </view>
       <view class="btns">
         <navigator class="btn" url="/pages/ucenter/order/order" open-type="redirect">查看订单</navigator>
         <navigator class="btn" url="/pages/index/index" open-type="switchTab">继续逛</navigator>
       </view>
     </view>
-    <view class="error" wx:if="{{status != true}}">
+    <view class="error" wx:if="{{status == 2 && orderId}}">
       <view class="msg">付款失败</view>
       <view class="tips">
         <view class="p">请在 <text class="time">1小时</text> 内完成付款</view>
@@ -15,7 +18,7 @@
       </view>
       <view class="btns">
         <navigator class="btn" url="/pages/ucenter/order/order" open-type="redirect">查看订单</navigator>
-        <navigator class="btn" url="/pages/pay/pay" open-type="redirect">重新付款</navigator>
+        <navigator class="btn"  bindtap='payOrder'>重新付款</navigator>
       </view>
     </view>
   </view>
