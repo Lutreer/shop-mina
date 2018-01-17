@@ -234,9 +234,7 @@ Page({
     }
 
     util.request(api.OrderSubmit, orderData, 'POST').then(res => {
-
       if (res.errno === 0) {
-        // TODO
         wx.requestPayment({
           'timeStamp': res.data.timeStamp,
           'nonceStr': res.data.nonceStr,
@@ -245,15 +243,14 @@ Page({
           'paySign': res.data.paySign,
           'success': function (wxPayRes) {
             // 支付成功，修改订单状态
-            util.request(api.OrderPayClientSuccess, { id: wxPayRes.data.statusCode, sn: wxPayRes.data.orderSN, status: wxPayRes.data.orderId}, 'POST').then(successRes => {
-              debugger
+            util.request(api.OrderPayClientSuccess, { id: res.data.orderId}, 'POST').then(successRes => {
               if (successRes.errno === 0) {
                 wx.navigateTo({
                   url: '/pages/payResult/payResult?status=1', // 1:支付成功；2：支付失败
                 })
               }else{
                 wx.navigateTo({
-                  url: '/pages/payResult/payResult?status=2&orderId=' + res.data.statusCode
+                  url: '/pages/payResult/payResult?status=2&orderId=' + res.data.orderId
                 })
               }
             })
