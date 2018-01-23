@@ -245,11 +245,11 @@ Page({
             // 支付成功，修改订单状态
             util.request(api.OrderPayClientSuccess, { id: res.data.orderId}, 'POST').then(successRes => {
               if (successRes.errno === 0) {
-                wx.navigateTo({
+                wx.redirectTo({
                   url: '/pages/payResult/payResult?status=1', // 1:支付成功；2：支付失败
                 })
               }else{
-                wx.navigateTo({
+                wx.redirectTo({
                   url: '/pages/payResult/payResult?status=2&orderId=' + res.data.orderId
                 })
               }
@@ -257,7 +257,7 @@ Page({
 
           },
           'fail': function (successRes) {
-            wx.navigateTo({
+            wx.redirectTo({
               url: '/pages/payResult/payResult?status=2&orderId=' + res.data.statusCode
             })
           },

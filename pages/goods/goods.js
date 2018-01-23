@@ -16,6 +16,19 @@ Page({
     relatedGoods: [],
     cartGoodsCount: 0
   },
+  onLoad: function (options) {
+    // 页面初始化 options为页面跳转所带来的参数
+    this.setData({
+      id: parseInt(options.id)// good_id
+      // id: 1181000
+    });
+    if (options.skuId) {
+      this.setData({
+        skuId: parseInt(options.skuId)// sku_id
+      });
+    }
+    this.getGoodsInfo();
+  },
   getGoodsInfo: function () {
     wx.showLoading({
       title: '加载中...',
@@ -109,19 +122,7 @@ Page({
 
     //重新计算哪些值不可以点击
   },
-  onLoad: function (options) {
-    // 页面初始化 options为页面跳转所带来的参数
-    this.setData({
-      id: parseInt(options.id)
-      // id: 1181000
-    });
-    if (options.skuId) {
-      this.setData({
-        skuId: parseInt(options.skuId)
-      });
-    }
-    this.getGoodsInfo();
-  },
+  
   onPullDownRefresh: function () {
     this.getGoodsInfo();
   },

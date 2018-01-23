@@ -16,41 +16,54 @@ page{
 }
 
 .order .h{
-    height: 83.3rpx;
-    line-height: 83.3rpx;
-    margin-left: 31.25rpx;
-    padding-right: 31.25rpx;
-    border-bottom: 1px solid #f4f4f4;
-    font-size: 30rpx;
-    color: #333;
+    margin-left:30rpx;
+    padding:15rpx 20rpx 15rpx 0rpx;
+    border-bottom:1px solid #f4f4f4;
+    font-size:30rpx;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-.order .h .l{
-    float: left;
+.order .h .l .sn_time{
+    color: #999;
+    font-size: 24rpx;
 }
 
 .order .h .r{
     float: right;
+    color: #333;
+    font-size: 24rpx;
+}
+.order .h .r-green{
+    float: right;
     color: #619433;
     font-size: 24rpx;
 }
-
+.order .h .r-red{
+    float: right;
+    color: red;
+    font-size: 24rpx;
+}
+.order .h .r-red-bold{
+    float: right;
+    color: red;
+    font-weight: bold;
+    font-size: 24rpx;
+}
 .order .goods{
-    display: flex;
-    align-items: center;
-    height: 199rpx;
-    margin-left: 31.25rpx;
+  max-height: 260rpx;
+  overflow: hidden;
+  margin-left:30rpx;
+  padding:15rpx 0rpx 5rpx 0rpx;
 }
 
-.order .goods .img{
-    height:145.83rpx;
-    width:145.83rpx;
-    background: #f4f4f4;
-}
 
-.order .goods .img image{
-    height:145.83rpx;
-    width:145.83rpx;
+.order .goods image{
+    height:120rpx;
+    width:120rpx;
+    margin-right: 10rpx;
+    border-radius: 6rpx;
 }
 
 .order .goods .info{
@@ -83,31 +96,44 @@ page{
 }
 
 .order .b{
-    height: 103rpx;
-    line-height: 103rpx;
-    margin-left: 31.25rpx;
-    padding-right: 31.25rpx;
+    display: flex;
+    margin-left: 30rpx;
+    padding-right: 30rpx;
     border-top: 1px solid #f4f4f4;
-    font-size: 30rpx;
     color: #333;
+    justify-content: space-between;
+    padding: 10rpx 10rpx 10rpx 0rpx;
 }
-
 .order .b .l{
-    float: left;
+  display: flex;
+  align-items:center;
 }
-
 .order .b .r{
-    float: right;
+  display: flex;
 }
-
 .order .b .btn{
-    margin-top: 19rpx;
-    height: 64.5rpx;
-    line-height: 64.5rpx;
+    height: 60rpx;
+    line-height: 60rpx;
     text-align: center;
-    padding: 0 20rpx;
-    border-radius: 5rpx;
-    font-size: 28rpx;
+    padding: 0 25rpx;
+    font-size: 26rpx;
     color: #fff;
     background: #619433;
+}
+.order .b .cancel-btn{
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+    padding: 0 25rpx;
+    font-size: 26rpx;
+    color: #999;
+    margin-right: 15rpx;
+}
+.order .b .del-btn{
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+    padding: 0 25rpx;
+    font-size: 26rpx;
+    color: #999;
 }

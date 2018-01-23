@@ -28,9 +28,6 @@ module.exports = {
     OrderPayClientSuccess: NewApiRootUrl + 'pay/orderPayClientSuccess',
     Prepay: NewApiRootUrl + 'pay/prepay', //获取微信统一下单prepay_id
 
-    CollectList: NewApiRootUrl + 'collect/list',  //收藏列表
-    CollectAddOrDelete: NewApiRootUrl + 'collect/addordelete',  //添加或取消收藏
-
     CommentList: NewApiRootUrl + 'comment/list',  //评论列表
     CommentCount: NewApiRootUrl + 'comment/count',  //评论总数
     CommentPost: NewApiRootUrl + 'comment/post',   //发表评论
@@ -56,9 +53,7 @@ module.exports = {
     OrderList: NewApiRootUrl + 'order/list',  //订单列表
     OrderDetail: NewApiRootUrl + 'order/detail',  //订单详情
     OrderCancel: NewApiRootUrl + 'order/cancel',  //取消订单
-
-    FootprintList: NewApiRootUrl + 'footprint/list',  //足迹列表
-    FootprintDelete: NewApiRootUrl + 'footprint/delete',  //删除足迹
+    OrderDel: NewApiRootUrl + 'order/delete',  //取消订单
 
     PushWerun: NewApiRootUrl + 'werun/push', //上传个人步数
     GetWerunList: NewApiRootUrl + 'werun/werunList', // 微步排行

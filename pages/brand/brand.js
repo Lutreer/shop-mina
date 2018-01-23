@@ -20,13 +20,22 @@ Page({
     util.request(api.BrandList, { page: that.data.page, size: that.data.size }).then(function (res) {
       if (res.errno === 0) {
         that.setData({
-          brandList: that.data.brandList.concat(res.data.data),
+          brandList: that.data.page > 0 ? that.data.brandList.concat(res.data.data) : res.data.data,
           totalPages: res.data.totalPages,
           page: that.data.page + 1
         });
       }
+      wx.stopPullDownRefresh()
       wx.hideLoading();
     });
+  },
+  onPullDownRefresh: function () {
+    this.setData({
+      page: 0,
+      size: 6,
+      totalPages: 0
+    })
+    this.getBrandList();
   },
   onReachBottom (){
     if (this.data.totalPages > this.data.page) {

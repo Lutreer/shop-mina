@@ -20,14 +20,12 @@ Page({
     util.request(api.OrderDetail, {
       orderId: that.data.orderId
     }).then(function (res) {
+
       if (res.errno === 0) {
-        console.log(res.data);
+
         that.setData({
-          orderInfo: res.data.orderInfo,
-          orderGoods: res.data.orderGoods,
-          handleOption: res.data.handleOption
+          orderInfo: res.data
         });
-        //that.payTimer();
       }
     });
   },
@@ -46,6 +44,15 @@ Page({
   payOrder() {
     wx.redirectTo({
       url: '/pages/pay/pay',
+    })
+  },
+  goGoodDetail(e){
+    let goodId = e.currentTarget.dataset.goodId
+    let skuId = e.currentTarget.dataset.skuId
+
+    if (!goodId || !skuId) return false
+    wx.navigateTo({
+      url: '/pages/goods/goods?id=' + goodId + '&skuId=' + skuId
     })
   },
   onReady:function(){

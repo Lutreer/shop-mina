@@ -18,7 +18,8 @@
       </view>
       <view class="btns">
         <navigator class="btn" url="/pages/ucenter/order/order" open-type="redirect">查看订单</navigator>
-        <navigator class="btn"  bindtap='payOrder'>重新付款</navigator>
+        <!-- 由于再次付款失败会跳转到订单列表页，但是订单列表页返回会再次到该页面（应该返回到购物车），所以先屏蔽该功能 -->
+        <!-- <navigator class="btn"  bindtap='payOrder'>重新付款</navigator> -->
       </view>
     </view>
   </view>

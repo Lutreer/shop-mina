@@ -2,11 +2,25 @@
     <view class="order-info">
         <view class="item-a">下单时间：{{orderInfo.add_time}}</view>
         <view class="item-b">订单编号：{{orderInfo.order_sn}}</view>
+    </view>
+    <view class="address">
+            <view class="t">
+                <text class="name ellipsis">{{orderInfo.address_consignee}}</text>
+                <text class="mobile ellipsis">{{orderInfo.address_mobile}}</text>
+            </view>
+            <view class="b ellipsis">{{orderInfo.address_college + " " + orderInfo.address_detail}}</view>
+        </view>
+    <view class="order-price-info">
+        <view class="item-d">商品合计：￥{{orderInfo.goods_price}}</view>
+        <view class="item-d">商品合计：￥{{orderInfo.goods_price}}</view>
+        <view class="item-d">运费合计：￥{{orderInfo.freight_price}}</view>
+        <view class="item-d">步数抵扣：￥{{orderInfo.werun_price}}</view>
         <view class="item-c">
-            <view class="l">实付：<text class="cost">￥{{orderInfo.actual_price}}</text></view>
+            <view class="l">实付：<text class="cost">￥{{orderInfo.order_price}}</text></view>
             <view class="r">
-                <view class="btn" bindtap="cancelOrder">取消订单</view>
-                <view class="btn active" bindtap="payOrder">去付款</view>
+                <!-- <view class="btn" bindtap="cancelOrder" wx:if="{{orderInfo.order_status == 5}}">取消订单</view> -->
+                <view class="btn" style="font-weight:bold" wx:if="{{orderInfo.order_status != 5}}">{{orderInfo.order_status_text}}</view>
+                <view class="btn pay-btn" bindtap="payOrder" wx:if="{{orderInfo.order_status == 5}}">付款</view>
             </view>
         </view>
     </view>
@@ -14,46 +28,24 @@
     <view class="order-goods">
         <view class="h">
             <view class="label">商品信息</view>
-            <view class="status">{{orderInfo.order_status_text}}</view>
         </view>
-        <view class="goods">
-            <view class="item" wx:for="{{orderGoods}}" wx:key="{{item.id}}">
-                <view class="img">
-                    <image src="{{item.list_pic_url}}"></image>
-                </view>
-                <view class="info">
-                    <view class="t">
-                        <text class="name">{{item.goods_name}}</text>
-                        <text class="number">x{{item.number}}</text>
-                    </view>
-                    <view class="attr">{{item.goods_specifition_name_value}}</view>
-                    <view class="price">￥{{item.retail_price}}</view>
-                </view>
-            </view>
-        </view>
-    </view>
 
-    <view class="order-bottom">
-        <view class="address">
-            <view class="t">
-                <text class="name">{{orderInfo.consignee}}</text>
-                <text class="mobile">{{orderInfo.mobile}}</text>
-            </view>
-            <view class="b">{{orderInfo.full_region + orderInfo.address}}</view>
-        </view>
-        <view class="total">
-            <view class="t">
-                <text class="label">商品合计：</text>
-                <text class="txt">￥{{orderInfo.goods_price}}</text>
-            </view>
-            <view class="t">
-                <text class="label">运费：</text>
-                <text class="txt">￥{{orderInfo.freight_price}}</text>
-            </view>
-        </view>
-        <view class="pay-fee">
-            <text class="label">实付：</text>
-            <text class="txt">￥{{orderInfo.actual_price}}</text>
-        </view>
+            <view class="goods-items">
+              <view class="item" wx:for="{{orderInfo.order_goods}}" wx:key="{{item.id}}" bindtap='goGoodDetail' data-good-id="{{item.goods_id}}" data-sku-id="{{item.sku_id}}">
+                  <view class="img">
+                      <image src="{{item.list_pic_url}}"></image>
+                  </view>
+                  <view class="info">
+                      <view class="t">
+                          <text class="name">{{item.goods_name}}</text>
+                          <text class="number">x{{item.number}}</text>
+                      </view>
+                      <view class="m">{{(item.sku_label || '规格') + ': ' + item.sku_name}}</view>
+                      <view class="b">￥{{item.retail_price}}<text class="market_price" wx:if="{{item.market_price}}">￥{{item.market_price}}</text></view>
+                      
+                  </view>
+              </view>
+          </view>
+
     </view>
 </view>

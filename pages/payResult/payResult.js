@@ -1,5 +1,6 @@
 var app = getApp();
 var util = require('../../utils/util.js');
+var api = require('../../config/api.js');
 
 Page({
   data:{
@@ -75,7 +76,7 @@ Page({
                   showCancel: false,
                   success: function (res) {
                     if (res.confirm) {
-                      wx.navigateTo({
+                      wx.redirectTo({
                         url: '/pages/ucenter/order/order',
                       })
                     }
@@ -96,7 +97,7 @@ Page({
               showCancel: false,
               success: function (res) {
                 if (res.confirm) {
-                  wx.navigateTo({
+                  wx.redirectTo({
                     url: '/pages/ucenter/order/order',
                   })
                 }
