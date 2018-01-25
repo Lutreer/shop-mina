@@ -1,7 +1,8 @@
 var NewApiRootUrl = 'http://127.0.0.1:8360/api/';
 
 module.exports = {
-  shareTitle_a: '丫米，郑州高校学生自建的果园',
+  appName: '丫米',
+  shareTitle_a: '丫米，郑州高校学生的品牌果园',
   shareTitle_b: '丫米，属于大学生的品牌',
   sharaPath: '/pages/index/index',
 

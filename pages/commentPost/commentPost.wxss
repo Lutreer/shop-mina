@@ -1,4 +1,4 @@
-page, .container {
+/* page, .container {
   height: 100%;
   background: #f4f4f4;
 }
@@ -60,4 +60,4 @@ page, .container {
   line-height: 108rpx;
   text-align: right;
   padding: 0 30rpx;
-}
+} */

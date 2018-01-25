@@ -1,6 +1,7 @@
 var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
 var app = getApp();
+const common = require('../../config/common.js');
 
 Page({
   data: {
@@ -66,7 +67,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: common.shareTitle_b,
-      path: '/pages/brand/brand'
+      path: '/pages/brandDetail/brandDetail?id=' + this.data.id
     }
   }
 })

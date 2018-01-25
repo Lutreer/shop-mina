@@ -1,6 +1,8 @@
 var util = require('../../../utils/util.js');
 var api = require('../../../config/api.js');
 var user = require('../../../services/user.js');
+const common = require('../../../config/common.js');
+
 var app = getApp();
 Page({
   data: {
@@ -243,5 +245,12 @@ Page({
       }
     })
     wx.hideLoading()
+  },
+  // 右上角转发菜单触发
+  onShareAppMessage: function () {
+    return {
+      title: "帮我点赞赢水果,微信步数换水果啦" + "【" + common.shareTitle_a + "】",
+      path: '/pages/ucenter/werun/werun'
+    }
   }
 })

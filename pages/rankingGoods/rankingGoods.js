@@ -2,6 +2,7 @@ var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
 var comConst = require('../../config/common.js');
 var goodsService = require('../../services/goods.js')
+const common = require('../../config/common.js');
 var app = getApp();
 
 Page({
@@ -101,7 +102,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: common.shareTitle_b,
-      path: '/pages/brand/brand'
+      path: '/pages/rankGoods/rankGoods?type=' + this.data.type
     }
   }
 })

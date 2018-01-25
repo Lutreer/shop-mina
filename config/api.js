@@ -28,18 +28,18 @@ module.exports = {
     OrderPayClientSuccess: NewApiRootUrl + 'pay/orderPayClientSuccess',
     Prepay: NewApiRootUrl + 'pay/prepay', //获取微信统一下单prepay_id
 
-    CommentList: NewApiRootUrl + 'comment/list',  //评论列表
-    CommentCount: NewApiRootUrl + 'comment/count',  //评论总数
-    CommentPost: NewApiRootUrl + 'comment/post',   //发表评论
+    // CommentList: NewApiRootUrl + 'comment/list',  //评论列表
+    // CommentCount: NewApiRootUrl + 'comment/count',  //评论总数
+    // CommentPost: NewApiRootUrl + 'comment/post',   //发表评论
 
     TopicList: NewApiRootUrl + 'topic/list',  //专题列表
     TopicDetail: NewApiRootUrl + 'topic/detail',  //专题详情
-    TopicRelated: NewApiRootUrl + 'topic/related',  //相关专题
+    // TopicRelated: NewApiRootUrl + 'topic/related',  //相关专题
 
     SearchIndex: NewApiRootUrl + 'search/index',  //搜索页面数据
     SearchResult: NewApiRootUrl + 'search/result',  //搜索数据
-    SearchHelper: NewApiRootUrl + 'search/helper',  //搜索帮助
-    SearchClearHistory: NewApiRootUrl + 'search/clearhistory',  //搜索帮助
+    // SearchHelper: NewApiRootUrl + 'search/helper',  //搜索帮助
+    // SearchClearHistory: NewApiRootUrl + 'search/clearhistory',  //搜索帮助
 
     AddressList: NewApiRootUrl + 'address/list',  //收货地址列表
     AddressDetail: NewApiRootUrl + 'address/detail',  //收货地址详情

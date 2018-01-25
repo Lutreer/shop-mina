@@ -1,4 +1,4 @@
-<view class="comments">
+<!-- <view class="comments">
     <view class="h">
         <view class="item {{ showType == 0 ? 'active' : ''}}" bindtap="switchTab">
             <view class="txt">全部({{allCount}})</view>
@@ -21,13 +21,13 @@
         <image class="img" wx:for="{{item.pic_list}}" wx:key="{{pitem.id}}" wx:for-item="pitem" src="{{pitem.pic_url}}"></image>
       </view>
       <view class="spec">
-        <!-- <text class="item">白色 2件</text> -->
+         <text class="item">白色 2件</text> 
       </view>
-      <!--<view class="customer-service" wx:if="{{item.commentReplyVO}}">
-        <text class="u">小选回复：</text>
+      <view class="customer-service" wx:if="{{item.commentReplyVO}}">
+        <text class="u">回复：</text>
         <text class="c">{{item.commentReplyVO.replyContent}}</text>
-      </view>-->
+      </view>
     </view>
 
   </view>
-</view>
+</view> -->

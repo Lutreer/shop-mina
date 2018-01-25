@@ -1,6 +1,7 @@
 var app = getApp();
 var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
+const common = require('../../config/common.js');
 
 Page({
   data: {
@@ -26,29 +27,29 @@ Page({
       }
     });
   },
-  getCommentList(){
-    let that = this;
-    util.request(api.CommentList, { valueId: that.data.id, typeId: 1, size: 5 }).then(function (res) {
-      if (res.errno === 0) {
+  // getCommentList(){
+  //   let that = this;
+  //   util.request(api.CommentList, { valueId: that.data.id, typeId: 1, size: 5 }).then(function (res) {
+  //     if (res.errno === 0) {
 
-        that.setData({
-          commentList: res.data.data,
-          commentCount: res.data.count
-        });
-      }
-    });
-  },
-  postComment (){
-    wx.navigateTo({
-      url: '/pages/commentPost/commentPost?valueId='+this.data.id + '&typeId=1',
-    })
-  },
+  //       that.setData({
+  //         commentList: res.data.data,
+  //         commentCount: res.data.count
+  //       });
+  //     }
+  //   });
+  // },
+  // postComment (){
+  //   wx.navigateTo({
+  //     url: '/pages/commentPost/commentPost?valueId='+this.data.id + '&typeId=1',
+  //   })
+  // },
   onReady: function () {
 
   },
   onShow: function () {
     // 页面显示
-    this.getCommentList();
+    // this.getCommentList();
   },
   onHide: function () {
     // 页面隐藏
@@ -57,5 +58,12 @@ Page({
   onUnload: function () {
     // 页面关闭
 
+  },
+  // 右上角转发菜单触发
+  onShareAppMessage: function () {
+    return {
+      title: common.appName + ":" + this.data.topic.title,
+      path: '/pages/brandDetail/brandDetail?id=' + this.data.id
+    }
   }
 })

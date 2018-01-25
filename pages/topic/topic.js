@@ -1,5 +1,7 @@
 var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
+const common = require('../../config/common.js');
+
 var app = getApp()
 Page({
     data: {

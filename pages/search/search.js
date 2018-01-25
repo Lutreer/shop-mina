@@ -17,9 +17,9 @@ Page({
     filterCategory: [],
     defaultKeyword: {},
     hotKeyword: [],
-    page: 1,
-    size: 20,
-    cartCount:0
+    page: 0,
+    size: 10,
+    totalPages: 0
   },
   //事件处理函数
   closeSearch: function () {
@@ -110,14 +110,11 @@ Page({
       if (res.errno === 0) {
         that.setData({
           searchStatus: true,
-          
-          goodsList: res.data.data,
-         
-          page: res.data.currentPage,
-          size: res.data.pageSize
+          goodsList: that.data.page > 0 ? that.data.goodsList.concat(res.data.data) : res.data.data,
+          totalPages: res.data.totalPages,
+          page: res.data.currentPage + 1
         });
       }
-debugger
       //重新获取关键词
       // that.getSearchKeyword();
     });
@@ -127,73 +124,85 @@ debugger
 
   },
   onKeywordTap: function (event) {
-
-    this.getSearchResult(event.target.dataset.keyword);
-
-  },
-  getSearchResult(keyword) {
     this.setData({
-      keyword: keyword,
-      page: 1,
+      keyword: event.target.dataset.keyword,
+      page: 0,
+      size: 10,
       goodsList: []
     });
+    this.getSearchResult();
 
+  },
+  getSearchResult() {
     this.getGoodsList();
   },
-  openSortFilter: function (event) {
-    let currentId = event.currentTarget.id;
-    switch (currentId) {
-      case 'categoryFilter':
-        this.setData({
-          'categoryFilter': !this.data.categoryFilter,
-          'currentSortOrder': 'asc'
-        });
-        break;
-      case 'priceSort':
-        let tmpSortOrder = 'asc';
-        if (this.data.currentSortOrder == 'asc') {
-          tmpSortOrder = 'desc';
-        }
-        this.setData({
-          'currentSortType': 'price',
-          'currentSortOrder': tmpSortOrder,
-          'categoryFilter': false
-        });
+  // openSortFilter: function (event) {
+  //   let currentId = event.currentTarget.id;
+  //   switch (currentId) {
+  //     case 'categoryFilter':
+  //       this.setData({
+  //         'categoryFilter': !this.data.categoryFilter,
+  //         'currentSortOrder': 'asc'
+  //       });
+  //       break;
+  //     case 'priceSort':
+  //       let tmpSortOrder = 'asc';
+  //       if (this.data.currentSortOrder == 'asc') {
+  //         tmpSortOrder = 'desc';
+  //       }
+  //       this.setData({
+  //         'currentSortType': 'price',
+  //         'currentSortOrder': tmpSortOrder,
+  //         'categoryFilter': false
+  //       });
 
-        this.getGoodsList();
-        break;
-      default:
-        //综合排序
-        this.setData({
-          'currentSortType': 'default',
-          'currentSortOrder': 'desc',
-          'categoryFilter': false
-        });
-        this.getGoodsList();
-    }
-  },
-  selectCategory: function (event) {
-    let currentIndex = event.target.dataset.categoryIndex;
-    let filterCategory = this.data.filterCategory;
-    let currentCategory = null;
-    for (let key in filterCategory) {
-      if (key == currentIndex) {
-        filterCategory[key].selected = true;
-        currentCategory = filterCategory[key];
-      } else {
-        filterCategory[key].selected = false;
-      }
-    }
-    this.setData({
-      'filterCategory': filterCategory,
-      'categoryFilter': false,
-      categoryId: currentCategory.id,
-      page: 1,
-      goodsList: []
-    });
-    this.getGoodsList();
-  },
+  //       this.getGoodsList();
+  //       break;
+  //     default:
+  //       //综合排序
+  //       this.setData({
+  //         'currentSortType': 'default',
+  //         'currentSortOrder': 'desc',
+  //         'categoryFilter': false
+  //       });
+  //       this.getGoodsList();
+  //   }
+  // },
+  // selectCategory: function (event) {
+  //   let currentIndex = event.target.dataset.categoryIndex;
+  //   let filterCategory = this.data.filterCategory;
+  //   let currentCategory = null;
+  //   for (let key in filterCategory) {
+  //     if (key == currentIndex) {
+  //       filterCategory[key].selected = true;
+  //       currentCategory = filterCategory[key];
+  //     } else {
+  //       filterCategory[key].selected = false;
+  //     }
+  //   }
+  //   this.setData({
+  //     'filterCategory': filterCategory,
+  //     'categoryFilter': false,
+  //     categoryId: currentCategory.id,
+  //     page: 1,
+  //     goodsList: []
+  //   });
+  //   this.getGoodsList();
+  // },
   onKeywordConfirm(event) {
-    this.getSearchResult(event.detail.value);
+    this.setData({
+      keyword: event.detail.value,
+      page: 0,
+      size: 10,
+      goodsList: []
+    });
+    this.getSearchResult();
+  },
+  onReachBottom() {
+    if (this.data.totalPages > this.data.page) {
+      this.getSearchResult();
+    } else {
+      return false;
+    }
   }
 })

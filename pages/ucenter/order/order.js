@@ -35,7 +35,7 @@ Page({
         that.setData({
           orderList: that.data.page > 0 ? that.data.orderList.concat(res.data.data) : res.data.data,
           totalPages: res.data.totalPages,
-          page: that.data.page + 1
+          page: that.data.currentPage + 1
         });
       }else{
         util.showErrorToast('获取失败')
