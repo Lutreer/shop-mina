@@ -20,8 +20,8 @@ Page({
   // 右上角转发菜单触发
   onShareAppMessage: function () {
     return {
-      title: common.shareTitle,
-      path: common.sharaPath
+      title: common.shareTitle_a,
+      path: '/pages/index/index'
     }
   },
 

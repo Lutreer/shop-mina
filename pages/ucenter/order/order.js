@@ -114,6 +114,11 @@ Page({
   },
   onShow:function(){
     // 页面显示
+    var value = wx.getStorageSync('page_order_relunch_data')
+    if (value){
+      this.getOrderList();
+    }
+    wx.removeStorageSync('page_order_relunch_data')
   },
   onHide:function(){
     // 页面隐藏

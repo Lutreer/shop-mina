@@ -3,7 +3,6 @@ var api = require('../../config/api.js');
 
 Page({
   data: {
-    // text:"这是一个页面"
     navList: [],
     goodsList: [],
     id: 0,

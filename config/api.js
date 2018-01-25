@@ -58,5 +58,7 @@ module.exports = {
     PushWerun: NewApiRootUrl + 'werun/push', //上传个人步数
     GetWerunList: NewApiRootUrl + 'werun/werunList', // 微步排行
     UpdateWerunInfo: NewApiRootUrl + 'werun/updateWerunInfo', // 更新
-    WerunToPraise: NewApiRootUrl + 'werun/praiseOthers' // 点赞
+    WerunToPraise: NewApiRootUrl + 'werun/praiseOthers', // 点赞
+
+    Feedback: NewApiRootUrl + 'feedback/add', // 点赞
 };

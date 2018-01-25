@@ -96,5 +96,12 @@ Page({
         cartCount: ++this.data.cartCount
       })
     })
+  },
+  // 右上角转发菜单触发
+  onShareAppMessage: function () {
+    return {
+      title: common.shareTitle_b,
+      path: '/pages/brand/brand'
+    }
   }
 })

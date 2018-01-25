@@ -40,14 +40,14 @@ page{
     color: #619433;
     font-size: 24rpx;
 }
-.order .h .r-red{
+/* .order .h .r-red{
     float: right;
-    color: red;
+    color: #f48f18;
     font-size: 24rpx;
-}
+} */
 .order .h .r-red-bold{
     float: right;
-    color: red;
+    color: #f48f18;
     font-weight: bold;
     font-size: 24rpx;
 }

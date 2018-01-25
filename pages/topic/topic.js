@@ -77,5 +77,12 @@ Page({
             "page": parseInt(that.data.page) - 1
         });
         this.getTopic();
+    },
+    // 右上角转发菜单触发
+    onShareAppMessage: function () {
+      return {
+        title: common.shareTitle_b,
+        path: '/pages/rankingGoods/rankingGoods'
+      }
     }
 })

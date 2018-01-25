@@ -1,17 +1,18 @@
 <view class="container">
+  
+    <view class="address">
+        <view class="t">
+            <text class="name ellipsis">{{orderInfo.address_consignee}}</text>
+            <text class="mobile ellipsis">{{orderInfo.address_mobile}}</text>
+        </view>
+        <view class="b ellipsis">{{orderInfo.address_college + " " + orderInfo.address_detail}}</view>
+    </view>
     <view class="order-info">
         <view class="item-a">下单时间：{{orderInfo.add_time}}</view>
         <view class="item-b">订单编号：{{orderInfo.order_sn}}</view>
     </view>
-    <view class="address">
-            <view class="t">
-                <text class="name ellipsis">{{orderInfo.address_consignee}}</text>
-                <text class="mobile ellipsis">{{orderInfo.address_mobile}}</text>
-            </view>
-            <view class="b ellipsis">{{orderInfo.address_college + " " + orderInfo.address_detail}}</view>
-        </view>
+
     <view class="order-price-info">
-        <view class="item-d">商品合计：￥{{orderInfo.goods_price}}</view>
         <view class="item-d">商品合计：￥{{orderInfo.goods_price}}</view>
         <view class="item-d">运费合计：￥{{orderInfo.freight_price}}</view>
         <view class="item-d">步数抵扣：￥{{orderInfo.werun_price}}</view>

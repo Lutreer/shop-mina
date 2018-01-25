@@ -132,5 +132,12 @@ Page({
   },
   scrolltolower: function(event) {
     // TODO 分页 延迟加载
+  },
+  // 右上角转发菜单触发
+  onShareAppMessage: function () {
+    return {
+      title: common.shareTitle_a,
+      path: '/pages/rankingGoods/rankingGoods'
+    }
   }
 })
