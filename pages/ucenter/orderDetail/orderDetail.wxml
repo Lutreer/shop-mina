@@ -20,7 +20,8 @@
             <view class="l">实付：<text class="cost">￥{{orderInfo.order_price}}</text></view>
             <view class="r">
                 <!-- <view class="btn" bindtap="cancelOrder" wx:if="{{orderInfo.order_status == 5}}">取消订单</view> -->
-                <view class="btn" style="font-weight:bold" wx:if="{{orderInfo.order_status != 5}}">{{orderInfo.order_status_text}}</view>
+                <view class="btn" style="font-weight:bold" wx:if="{{orderInfo.order_status != 5 && orderInfo.order_status != 10}}">{{orderInfo.order_status_text}}</view>
+                <view class="btn pay-btn" bindtap="confirmOrder" wx:if="{{orderInfo.order_status == 10}}">确认收货</view>
                 <view class="btn pay-btn" bindtap="payOrder" wx:if="{{orderInfo.order_status == 5}}">付款</view>
             </view>
         </view>

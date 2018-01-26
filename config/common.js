@@ -5,6 +5,7 @@ module.exports = {
   shareTitle_a: '丫米，郑州高校学生的品牌果园',
   shareTitle_b: '丫米，属于大学生的品牌',
   sharaPath: '/pages/index/index',
+  bottomSlogen_a:"V1.0.1    丫米技术",
 
  localStorage:{
    historyKeyword: 'historyKeyword'

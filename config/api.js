@@ -54,6 +54,7 @@ module.exports = {
     OrderDetail: NewApiRootUrl + 'order/detail',  //订单详情
     OrderCancel: NewApiRootUrl + 'order/cancel',  //取消订单
     OrderDel: NewApiRootUrl + 'order/delete',  //取消订单
+    OrderConfirm: NewApiRootUrl + 'order/confirmReceive',  //取消订单
 
     PushWerun: NewApiRootUrl + 'werun/push', //上传个人步数
     GetWerunList: NewApiRootUrl + 'werun/werunList', // 微步排行

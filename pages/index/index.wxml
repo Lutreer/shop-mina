@@ -176,7 +176,8 @@
             </view>
         </view>
     </view>
-    <view class="bottom-tip">好吃的都在上面啦~</view>
+    <view class="bottom-tip" style="padding-bottom:10rpx;">好吃的都在上面啦~</view>
+    <view class="bottom_slogen">{{bottomSlogen}}</view>
     <navigator class="float-cart-view {{addAnimation ? 'add_animation' : ''}}" url="/pages/cart/cart" open-type="switchTab" wx:if="{{cartCount > 0}}">
         <image class="float-cart" src="../../static/images/cart_no.png"></image>
         <text class="float-cart-no">{{cartCount}}</text>

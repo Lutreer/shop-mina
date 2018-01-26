@@ -81,6 +81,6 @@
       </navigator>
     </view>
   </view>
-
+<view class="bottom_slogen" style="margin-top: 200rpx">{{bottomSlogen}}</view>
   <!--<view class="logout" bindtap="exitLogin">退出登录</view>-->
 </view>

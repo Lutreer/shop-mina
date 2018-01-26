@@ -134,6 +134,34 @@ Page({
       url: '/pages/goods/goods?id=' + goodId + '&skuId=' + skuId
     })
   },
+  confirmOrder(){
+    let that = this
+    wx.showModal({
+      title: '提示',
+      content: '您确认收到该商品了吗？',
+      success: function (res) {
+        if (res.confirm) {
+          wx.showLoading({
+            mask: true
+          })
+
+          util.request(api.OrderConfirm, { orderId: that.data.orderInfo.id }, 'POST').then(res => {
+            wx.hideLoading()
+            if (res.errno === 0) {
+              // TODO 这里其实是不能直接跳回去的
+              wx.setStorageSync('page_order_relunch_data', true)
+              wx.navigateBack({
+                delta: 1
+              })
+            }else{
+              util.showErrorToast(res.errmsg);
+            }
+          })
+        }
+      }
+    })
+    
+  },
   onReady:function(){
     // 页面渲染完成
   },

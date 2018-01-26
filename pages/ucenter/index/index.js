@@ -1,10 +1,12 @@
 var util = require('../../../utils/util.js');
 var api = require('../../../config/api.js');
 var user = require('../../../services/user.js');
+const common = require('../../../config/common.js');
 var app = getApp();
 
 Page({
   data: {
+    bottomSlogen: common.bottomSlogen_a,
     userInfo: {}
   },
   onLoad: function (options) {

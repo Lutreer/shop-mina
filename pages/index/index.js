@@ -7,6 +7,7 @@ const common = require('../../config/common.js');
 const app = getApp()
 Page({
   data: {
+    bottomSlogen: common.bottomSlogen_a,
     newGoods: [],
     hotGoods: [],
     topics: [],

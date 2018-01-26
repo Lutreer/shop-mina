@@ -19,6 +19,7 @@
                 <view class="r">
                   <button class="cancel-btn" data-order-index="{{index}}" catchtap="cancelOrder" wx:if="{{item.order_status == 5}}">取消</button>
                     <button class="btn" data-order-index="{{index}}" catchtap="orderDetail" wx:if="{{item.order_status == 5}}">去付款</button>
+                    <button class="btn" data-order-index="{{index}}" catchtap="orderDetail" wx:if="{{item.order_status == 10}}">去收货</button>
                     <button class="del-btn" data-order-index="{{index}}" catchtap="delOrder" wx:if="{{item.order_status == 1 || item.order_status == 2}}">删除</button>
                 </view>
             </view>

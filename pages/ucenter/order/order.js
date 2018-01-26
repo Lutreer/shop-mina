@@ -1,6 +1,6 @@
 var util = require('../../../utils/util.js');
 var api = require('../../../config/api.js');
-
+const common = require('../../../config/common.js');
 Page({
   data:{
     orderList: [],
@@ -11,6 +11,7 @@ Page({
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
     this.getOrderList();
+    wx.removeStorageSync('page_order_relunch_data')
   },
   onPullDownRefresh: function () {
     this.setData({
@@ -35,7 +36,7 @@ Page({
         that.setData({
           orderList: that.data.page > 0 ? that.data.orderList.concat(res.data.data) : res.data.data,
           totalPages: res.data.totalPages,
-          page: that.data.currentPage + 1
+          page: that.data.page + 1
         });
       }else{
         util.showErrorToast('获取失败')
@@ -116,6 +117,11 @@ Page({
     // 页面显示
     var value = wx.getStorageSync('page_order_relunch_data')
     if (value){
+      this.setData({
+        page: 0,
+        size: 8,
+        totalPages: 0
+      })
       this.getOrderList();
     }
     wx.removeStorageSync('page_order_relunch_data')
