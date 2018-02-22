@@ -1,4 +1,3 @@
-var NewApiRootUrl = 'http://127.0.0.1:8360/api/';
 
 module.exports = {
   appName: '丫米',

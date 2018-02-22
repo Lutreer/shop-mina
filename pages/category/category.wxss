@@ -184,7 +184,7 @@ page {
 .category_goods_list {
   width: 100%;
   height: auto;
-  overflow: hidden;
+
 }
 
 .category_goods_list .b .item {

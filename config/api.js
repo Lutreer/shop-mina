@@ -1,4 +1,5 @@
-var NewApiRootUrl = 'http://localhost:8360/api/';
+// var NewApiRootUrl = 'https://www.thankni.com/api/';
+var NewApiRootUrl = 'http://127.0.0.1:8360/api/';
 
 module.exports = {
     IndexUrl: NewApiRootUrl + 'index/index', //首页数据接口

@@ -13,7 +13,12 @@ Page({
     currentCategory: {},
     currentGoods: [],
     searchPlaceholder: '',
-    goodsCount: 0
+    goodsCount: 0,
+
+    screenHeight:0,
+    pageHeight:0,
+    goodsScrollHeight:0,
+    exSearchHeight: 0
   },
   onLoad: function () {
     this.setData({
@@ -25,14 +30,20 @@ Page({
         id: app.globalData.tabParam.category_id
       }
     })
+
+    var systemInfo =  wx.getSystemInfoSync()  
+    this.setData({
+      screenHeight: systemInfo.screenHeight,
+      pageHeight: systemInfo.windowHeight,
+      // goodsScrollHeight: systemInfo.windowHeight - systemInfo.windowHeight * (88 / 750),
+      exSearchHeight: systemInfo.windowHeight
+    });
     
     this._getCategory().then(res => {
       if (!app.globalData.tabParam.category_id) {
         this._getCurrentCategory(res[0].id)
       }
     })
-    
-    
   },
   addToCar: function (event) {
     const goodId = event.currentTarget.dataset.goodid
@@ -72,15 +83,16 @@ Page({
       .then(res => {
         that.setData({
           currentGoods: res.data.currentGoods,
-          currentCategory: res.data.currentCategory
+          currentCategory: res.data.currentCategory,
+          // goodsScrollHeight: res.data.currentGoods.length * that.data.screenHeight * (221 / 750) + that.data.screenHeight * (530 / 750) + 10
         });
-        setTimeout( () => {
-          this.setData({
-            currentCategory: that.data.navList.filter(item => {
-              return item.id == id
-            })[0]
-          })
-        }, 0)
+        // setTimeout( () => {
+        //   this.setData({
+        //     currentCategory: that.data.navList.filter(item => {
+        //       return item.id == id
+        //     })[0]
+        //   })
+        // }, 0)
        
         wx.hideLoading();
       });

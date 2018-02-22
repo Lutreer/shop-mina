@@ -5,11 +5,11 @@
       <text class="txt">{{searchPlaceholder}}</text>
     </navigator>
   </view>
-  <view class="category">
+  <view class="category" style="height:{{exSearchHeight}}px;overflow:hidden">
     <scroll-view class="nav" scroll-y="true">
         <view class="item {{ currentCategory.id == item.id ? 'active' : ''}}" wx:for="{{navList}}" data-item="{{item}}"  data-id="{{item.id}}" data-index="{{index}}" wx:key="{{index}}" bindtap="switchCate">{{item.name}}</view>
     </scroll-view>
-    <scroll-view class="cate" scroll-y="true" scroll-top="{{scrollTop}}" scroll-with-animation="true" enable-back-to-top="true" bindscrolltolower="scrolltolower">
+    <scroll-view class="cate" scroll-y="true" scroll-top="{{scrollTop}}" scroll-with-animation="true" enable-back-to-top="true" bindscrolltolower="scrolltolower" style="height: {{exSearchHeight}}px;">
         <view class="banner">
             <navigator>
                 <image class="image" wx:show="currentCategory.banner_img_url" src="{{currentCategory.banner_pic_url}}"></image>
@@ -54,6 +54,7 @@
                 </navigator>
             </view>
         </view>
+        <view class="bottom-tip" style="padding-bottom:88rpx">都在上面啦~</view>
     </view>
 
             <!-- <view class="cate-item">

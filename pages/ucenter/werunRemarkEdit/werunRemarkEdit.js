@@ -36,8 +36,8 @@ Page({
     util.request(api.UpdateWerunInfo, { remark: this.data.remark, id: this.data.id }, 'POST').then(res => {
       
       if (res.errno === 0) {
-        wx.navigateTo({
-          url: '/pages/ucenter/werun/werun'
+        wx.navigateBack({
+          delta: 1
         })
       } else {
         util.showErrorToast('保存失败')
