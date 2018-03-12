@@ -6,7 +6,7 @@ page{
 }
 .brand-info .name{
     width: 100%;
-    height: 290rpx;
+    height: 600rpx;
     position: relative;
 }
 
@@ -15,7 +15,7 @@ page{
     top:0;
     left:0;
     width: 100%;
-    height: 290rpx;
+    height: 600rpx;
 }
 
 .brand-info .info-box{
@@ -23,7 +23,7 @@ page{
     top:0;
     left:0;
     width: 100%;
-    height: 290rpx;
+    height: 600rpx;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -32,12 +32,12 @@ page{
 
 .brand-info .info{
     display: block;
+    border-bottom: 1rpx solid #fff;
 }
 
 .brand-info .txt{
     display: block;
-    height: 37.5rpx;
-    font-size: 37.5rpx;
+    font-size: 26rpx;
     color: #fff;
 }
 

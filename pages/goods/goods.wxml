@@ -44,7 +44,7 @@
         <view class="goods_info_item">销量：{{goods.sell_volume}}</view>
         <view class="goods_info_item ">点赞：{{goods.like_volume}}</view>
       </view>
-      <view class="desc">{{goods.goods_desc}}</view>
+      <view class="desc" wx:if="{{goods.goods_desc}}">{{goods.goods_desc}}</view>
     </view>
 
     <view class="goods-detail-img">
@@ -126,6 +126,7 @@
 
       </view>
     </view>
+    <navigator class="kefu"  url="/pages/ucenter/kefu/kefu"><image src="/static/images/detail_kefu.png"></image></navigator>
     <view class="r {{goods}}"  data-goodid="{{goods.id}}" data-skuid="{{activeSku.id}}" catchtap='addToCar'>加入购物车</view>
     <view class="c" bindtap='toClearing'>买买买</view>
     

@@ -6,15 +6,12 @@
     "pages/ucenter/address/address",
     "pages/ucenter/addressAdd/addressAdd",
     "pages/ucenter/orderDetail/orderDetail",
-   
     "pages/ucenter/order/order",
     "pages/ucenter/feedback/feedback",
-   
     "pages/pay/pay",
     "pages/payResult/payResult",
     "pages/ucenter/index/index",
     "pages/topic/topic",
-    
     "pages/brand/brand",
     "pages/brandDetail/brandDetail",
     "pages/search/search",
@@ -26,7 +23,8 @@
     "pages/topicDetail/topicDetail",
     "pages/ucenter/werun/werun",
     "pages/ucenter/werunTips/werunTips",
-    "pages/ucenter/werunRemarkEdit/werunRemarkEdit"
+    "pages/ucenter/werunRemarkEdit/werunRemarkEdit",
+    "pages/ucenter/kefu/kefu"
   ],
   "window": {
     "backgroundTextStyle": "dark",

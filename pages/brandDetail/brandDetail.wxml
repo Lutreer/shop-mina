@@ -4,8 +4,7 @@
             <image class="img" src="{{brand.inner_pic_url}}" background-size="cover"></image>
             <view class="info-box">
                 <view class="info">
-                    <text class="txt">{{brand.title_first}}</text>
-                    <text class="line"></text>
+                    <text class="txt">{{brand.title}}</text>
                 </view>
             </view>
         </view>

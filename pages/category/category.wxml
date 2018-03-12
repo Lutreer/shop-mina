@@ -12,7 +12,7 @@
     <scroll-view class="cate" scroll-y="true" scroll-top="{{scrollTop}}" scroll-with-animation="true" enable-back-to-top="true" bindscrolltolower="scrolltolower" style="height: {{exSearchHeight}}px;">
         <view class="banner">
             <navigator>
-                <image class="image" wx:show="currentCategory.banner_img_url" src="{{currentCategory.banner_pic_url}}"></image>
+                <view hover-stop-propagation="true" class="image" wx:show="currentCategory.banner_img_url" style="background-image: url({{currentCategory.banner_pic_url}})"></view>
                 <view wx:if="{{currentCatagory.description}}">{{currentCatagory.description}}</view>
             </navigator>
         </view>

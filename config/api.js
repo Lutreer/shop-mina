@@ -1,5 +1,5 @@
 // var NewApiRootUrl = 'https://www.thankni.com/api/';
-var NewApiRootUrl = 'http://127.0.0.1:8360/api/';
+var NewApiRootUrl = 'http://localhost:8360/api/';
 
 module.exports = {
     IndexUrl: NewApiRootUrl + 'index/index', //首页数据接口
@@ -63,4 +63,5 @@ module.exports = {
     WerunToPraise: NewApiRootUrl + 'werun/praiseOthers', // 点赞
 
     Feedback: NewApiRootUrl + 'feedback/add', // 点赞
+    Kefu: NewApiRootUrl + 'app_config/kefu', // 客服
 };

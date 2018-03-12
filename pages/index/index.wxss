@@ -71,6 +71,7 @@
   height: auto;
   overflow: hidden;
   position: relative;
+  padding-bottom: 5rpx;
 }
 
 .a-brand .wrap {

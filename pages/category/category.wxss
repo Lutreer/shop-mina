@@ -90,9 +90,8 @@ page {
 }
 
 .banner .image {
-    border-radius: 4rpx;
     height: 192rpx;
-    width: 100%;
+    background-size:100%;
 }
 
 .banner .txt {

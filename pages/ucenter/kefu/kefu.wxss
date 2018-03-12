@@ -1,0 +1,4 @@
+/* pages/ucenter/kefu/kefu.wxss */
+image{
+  width: 100%;
+}

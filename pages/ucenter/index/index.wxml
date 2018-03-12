@@ -10,13 +10,13 @@
   <view class="user-menu">
   <view class="item">
       <navigator url="/pages/ucenter/werun/werun" class="a">
-        <text class="icon order"></text>
+        <image class="icon kefu" src='/static/images/ranking.png'></image>
         <text class="txt">微步排行</text>
       </navigator>
     </view>
     <view class="item">
       <navigator url="/pages/ucenter/order/order" class="a">
-        <text class="icon order"></text>
+       <image class="icon kefu" src='/static/images/order.png'></image>
         <text class="txt">我的订单</text>
       </navigator>
     </view>
@@ -52,7 +52,7 @@
     </view> -->
     <view class="item">
       <navigator url="../address/address" class="a">
-        <text class="icon address"></text>
+        <image class="icon kefu" src='/static/images/address.png'></image>
         <text class="txt">地址管理</text>
       </navigator>
     </view>
@@ -63,20 +63,20 @@
       </navigator>
     </view> -->
     <view class="item item-bottom">
-      <navigator url="url" class="a">
-        <text class="icon kefu"></text>
+      <navigator url="/pages/ucenter/kefu/kefu" class="a">
+        <image class="icon kefu" src='/static/images/detail_kefu.png'></image>
         <text class="txt">联系客服</text>
       </navigator>
     </view>
     <view class="item item-bottom">
       <navigator url="url" class="a">
-        <text class="icon help"></text>
+        <image class="icon kefu" src='/static/images/help.png'></image>
         <text class="txt">帮助中心</text>
       </navigator>
     </view>
     <view class="item item-bottom">
       <navigator url="/pages/ucenter/feedback/feedback" class="a">
-        <text class="icon feedback"></text>
+        <image class="icon kefu" src='/static/images/feedback.png'></image>
         <text class="txt">意见反馈</text>
       </navigator>
     </view>

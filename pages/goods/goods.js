@@ -3,7 +3,6 @@ var WxParse = require('../../lib/wxParse/wxParse.js');
 var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
 var comConst = require('../../config/common.js');
-const common = require('../../config/common.js');
 
 Page({
   data: {
@@ -161,7 +160,6 @@ Page({
   // 结算
   toClearing: function() {
     this.data
-    debugger
     let goods = JSON.parse(JSON.stringify(this.data.goods))
     let sku = JSON.parse(JSON.stringify(this.data.activeSku))
     goods.sku = sku
@@ -208,7 +206,7 @@ Page({
   // 右上角转发菜单触发
   onShareAppMessage: function () {
     return {
-      title: common.shareTitle_a + "【" + this.data.goods.name +"】",
+      title: comConst.shareTitle_a + "【" + this.data.goods.name +"】",
       path: '/pages/goods/goods?id=' + this.data.goods.id
     }
   }

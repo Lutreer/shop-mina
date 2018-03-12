@@ -1,0 +1,2 @@
+<!--pages/ucenter/kefu/kefu.wxml-->
+<image src="{{kefuPicUrl}}" class=""></image>
