@@ -107,7 +107,7 @@ page{
     width: 100%;
     text-align: center;
     line-height: 100rpx;
-    background: #619433;
+    background: #EFAFAE;
     color: #fff;
     font-size: 30rpx;
 }

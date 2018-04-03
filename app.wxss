@@ -70,21 +70,21 @@ view,text{
 .a-popular .b .text .sku{
   display: flex;
   justify-content:space-between;
-  color:#619433;
+  color:#EFAFAE;
   line-height: 65rpx;
 }
 .sku_price{
   font-size: 34rpx;
-  color:#619433;
+  color:#DF3923;
 }
 .sku_name{
   font-size: 24rpx;
-  color:#619433;
+  color:#999;
 }
 .sku_market_price{
   margin-left: 10rpx;
   font-size: 24rpx;
-  color:#808080;
+  color:#999;
   text-decoration: line-through;
   line-height:60rpx;
 }
@@ -112,7 +112,7 @@ view,text{
 .a-popular .b .price {
   width: 480rpx;
   display: block;
-  color: #619433;
+  color: #EFAFAE;
   line-height: 50rpx;
   font-size: 33rpx;
 }
@@ -129,7 +129,7 @@ view,text{
   border:1rpx solid #ccc;
   border-radius:25px;
   /* font-size:35rpx; */
-  color:#619433;
+  color:#EFAFAE;
   /* font-weight:bold; */
   display:flex;
   align-items:center;
@@ -198,7 +198,7 @@ view,text{
   left: 40rpx;
   width:100rpx;
   height:100rpx;
-  background: #619433;
+  background: #EFAFAE;
   border-radius: 50rpx;
 }
 .corner-cart-view .cart-img{

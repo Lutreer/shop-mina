@@ -67,8 +67,8 @@
             </view> -->
     </scroll-view>
   </view>
-  <navigator class="float-cart-view" url="/pages/cart/cart" open-type="switchTab" wx:if="{{cartCount > 0}}">
+  <!-- <navigator class="float-cart-view" url="/pages/cart/cart" open-type="switchTab" wx:if="{{cartCount > 0}}">
       <image class="float-cart" src="../../static/images/cart_no.png"></image>
       <text class="float-cart-no">{{cartCount}}</text>
-  </navigator>
+  </navigator> -->
 </view>

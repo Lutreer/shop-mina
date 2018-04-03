@@ -47,7 +47,7 @@ page {
 }
 
 .pay-result .error .msg {
-  color: #619433;
+  color: #EFAFAE;
   margin-bottom: 60rpx;
 }
 

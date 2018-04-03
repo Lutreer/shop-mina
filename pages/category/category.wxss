@@ -68,9 +68,9 @@ page {
 }
 
 .category .nav .item.active {
-    color: #619433;
+    color: #EFAFAE;
     /* font-size: 36rpx; */
-     border-left: 4rpx solid #619433; 
+     border-left: 4rpx solid #EFAFAE;
     background:#fff;
 }
 
@@ -222,7 +222,7 @@ page {
 .category_goods_list .b .text .sku{
   display: flex;
   justify-content:space-between;
-  color:#619433;
+  color:#EFAFAE;
   height: 60rpx;
 }
 .sku_info{
@@ -242,7 +242,7 @@ page {
 .category_goods_list .b .price {
   width: 340rpx;
   display: block;
-  color: #619433;
+  color: #EFAFAE;
   line-height: 50rpx;
   font-size: 33rpx;
 }
@@ -253,11 +253,11 @@ page {
 .sku_price{
   line-height:60rpx;
   font-size: 30rpx;
-  color:#619433;
+  color:#EFAFAE;
 }
 .sku_name{
   line-height:60rpx;
-  color:#619433;
+  color:#EFAFAE;
 }
 .category_goods_list .b .name {
   display: block;
@@ -279,7 +279,7 @@ page {
 .category_goods_list .b .price {
   width: 340rpx;
   display: block;
-  color: #619433;
+  color: #EFAFAE;
   line-height: 50rpx;
   font-size: 33rpx;
 }

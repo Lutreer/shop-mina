@@ -26,8 +26,8 @@ border-bottom:3rpx solid #ccc;
   flex:3
 }
 .tab-item.active {
-  color: #619433;
- border-bottom:4rpx solid #619433;
+  color: #EFAFAE;
+ border-bottom:4rpx solid #EFAFAE;
 
 }
 

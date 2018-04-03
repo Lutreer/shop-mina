@@ -40,14 +40,15 @@ page{
     height: 40rpx;
     padding-left: 50rpx;
     line-height: 40rpx;
-    background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/checkbox-sed825af9d3-a6b8540d42.png) 1rpx -448rpx no-repeat;
-    background-size: 38rpx 486rpx;
-    font-size: 28rpx;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAMAAACf4xmcAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABCUExURUdwTMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzAV+Z0EAAAAVdFJOUwAJ+KUEFTPay2bzRXdZ7RkhmJ6qJOWhY+QAAAEDSURBVDjLnZTplsIgDIUNWwK2tdt9/1cdxHGmVcAc+dH25Hw0+71cvjhztDIZM4mNc4txo+BwZKxSVwbSFoMn8iFuCeDrG0RLNkc6GGK+ttCZ8gIzuJcgBgPxJ4rB4T2OkM0HjgRyq8V7Y8i/3/V06YVb/nKECa0qBYPffB1jaFd8AD8+RrBrY8R41FkQew2MkPtrR6IeRglzoW1/HrbizfZ9Pv8jCH0slOAm+D7mMeUn4PoYwegxpVNlCsqCKMurbJay9R8GyT0HSTmWeciTYsh7K+MPK1MW0H9eQOU652sqcch+15rUrFQXLpuFy7ksXLYuXDUZbBZ9v4sqiqju34jyD97JD4dkfgo1AAAAAElFTkSuQmCC) no-repeat;
+    background-size: 34rpx;
+    background-position:0rpx;
 }
 
 .default-input.selected{
-    background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/checkbox-sed825af9d3-a6b8540d42.png) 0 -192rpx no-repeat;
-    background-size: 38rpx 486rpx;
+    background: url(http://image.thankni.com/admin/2018-04-03-39-253_checkbox.png) no-repeat;
+    background-size: 34rpx;
+    background-position:0rpx;
 }
 
 .add-address .btns{
@@ -72,11 +73,11 @@ page{
 }
 
 .add-address .cannel{
-    background: #333;
+    background: #aaa;
 }
 
 .add-address .save{
-    background: #619433;
+    background: #EFAFAE;
 }
 
 
@@ -121,7 +122,7 @@ page{
 }
 
 .region-select .region-selected .item.selected{
-  color: #619433;
+  color: #EFAFAE;
 }
 
 .region-select .done{
@@ -164,7 +165,7 @@ page{
 }
 
 .region-select .region-list .item.selected{
-  color: #619433;
+  color: #EFAFAE;
 }
 
 

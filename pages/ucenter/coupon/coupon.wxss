@@ -54,7 +54,7 @@ page{
   height: 70rpx;
   border:none;
   width: 168rpx;
-  background: #619433;
+  background: #EFAFAE;
   border-radius: 0;
   line-height: 70rpx;
   color: #fff;

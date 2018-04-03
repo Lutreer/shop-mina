@@ -53,7 +53,7 @@ page{
 }
 
 .item-c .cost{
-    color: #619433;
+    color: #EFAFAE;
 }
 
 .item-c .btn{
@@ -67,7 +67,7 @@ page{
 
 .item-c .pay-btn{
   padding: 0 35rpx;
-    background: #619433;
+    background: #EFAFAE;
     color: #fff;
 }
 
@@ -167,13 +167,13 @@ border-bottom:1rpx solid #eee;
 .order-bottom .pay-fee .label{
     display: inline-block;
     width: 140rpx;
-    color: #619433;
+    color: #EFAFAE;
 }
 
 .order-bottom .pay-fee .txt{
     display: inline-block;
     width: 140rpx;
-    color: #619433;
+    color: #EFAFAE;
 }
 
 /* 商品列表 */

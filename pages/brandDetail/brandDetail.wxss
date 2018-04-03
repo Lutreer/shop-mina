@@ -6,16 +6,16 @@ page{
 }
 .brand-info .name{
     width: 100%;
-    height: 600rpx;
+    /* height: 600rpx; */
     position: relative;
 }
 
 .brand-info .img{
-    position: absolute;
+    /* position: absolute; */
     top:0;
     left:0;
     width: 100%;
-    height: 600rpx;
+    /* height: 600rpx; */
 }
 
 .brand-info .info-box{
@@ -109,5 +109,5 @@ page{
   height: 30rpx;
   text-align: center;
   font-size: 30rpx;
-  color: #619433;
+  color: #EFAFAE;
 }

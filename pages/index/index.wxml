@@ -24,10 +24,10 @@
                 <navigator url="/pages/brandDetail/brandDetail?id={{item.id}}">
                     <view class="wrap">
                         <image class="img" src="{{item.outter_pic_url}}" mode="aspectFill"></image>
-                        <view class="mt">
+                        <!-- <view class="mt">
                             <text class="brand" wx:if="{{item.title_first}}">{{item.title_first}}</text>
                             <text class="price" wx:if="{{item.title_second}}">{{item.title_second}}</text>
-                        </view>
+                        </view> -->
                     </view>
                 </navigator>
             </view>
@@ -119,7 +119,7 @@
         <view class="h">
             <view>
                 <navigator url="../topic/topic">
-                    <text class="txt">专买买买题精选</text>
+                    <text class="txt">专题精选</text>
                 </navigator>
             </view>
         </view>
@@ -178,8 +178,8 @@
     </view>
     <view class="bottom-tip" style="padding-bottom:10rpx;">好吃的都在上面啦~</view>
     <view class="bottom_slogen">{{bottomSlogen}}</view>
-    <navigator class="float-cart-view {{addAnimation ? 'add_animation' : ''}}" url="/pages/cart/cart" open-type="switchTab" wx:if="{{cartCount > 0}}">
+    <!-- <navigator class="float-cart-view {{addAnimation ? 'add_animation' : ''}}" url="/pages/cart/cart" open-type="switchTab" wx:if="{{cartCount > 0}}">
         <image class="float-cart" src="../../static/images/cart_no.png"></image>
         <text class="float-cart-no">{{cartCount}}</text>
-    </navigator>
+    </navigator> -->
 </view>

@@ -52,7 +52,7 @@ Page({
   exitLogin: function () {
     wx.showModal({
       title: '',
-      confirmColor: '#619433',
+      confirmColor: '#EFAFAE',
       content: '退出登录？',
       success: function (res) {
         if (res.confirm) {

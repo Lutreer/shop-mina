@@ -1,10 +1,10 @@
 
 module.exports = {
   appName: '丫米',
-  shareTitle_a: '丫米，郑州高校学生的品牌果园',
-  shareTitle_b: '丫米，属于大学生的品牌',
+  shareTitle_a: '丫米，原生态果园',
+  shareTitle_b: '丫米，专属你的品牌',
   sharaPath: '/pages/index/index',
-  bottomSlogen_a:"V1.0.1    丫米技术",
+  bottomSlogen_a:"V0.1.0   github/lutreer",
 
  localStorage:{
    historyKeyword: 'historyKeyword'

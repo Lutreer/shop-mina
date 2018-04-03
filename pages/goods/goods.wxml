@@ -5,9 +5,9 @@
       </swiper-item>
     </swiper>
     <!-- <view class="service-policy">
-      <view class="item">30天无忧退货</view>
-      <view class="item">48小时快速退款</view>
-      <view class="item">满88元免邮费</view>
+      <view class="item">7天无忧退货</view>
+      <view class="item">24小时快速退款</view>
+      <view class="item">满15元免邮费</view>
     </view> -->
     <view class="goods-info">
       <view class="c">

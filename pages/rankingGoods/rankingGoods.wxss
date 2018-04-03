@@ -84,7 +84,7 @@ page{
 }
 
 .sort-box .item.active .txt{
-    color: #619433;
+    color: #EFAFAE;
 }
 
 .sort-box .item.by-price{
@@ -124,8 +124,8 @@ page{
 }
 
 .sort-box-category .item.active{
-    color: #619433;
-    border: 1px solid #619433;
+    color: #EFAFAE;
+    border: 1px solid #EFAFAE;
 }
 
 .cate-item .b{
@@ -175,5 +175,5 @@ page{
   height: 30rpx;
   text-align: center;
   font-size: 30rpx;
-  color: #619433;
+  color: #EFAFAE;
 }
